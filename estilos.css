@@ -175,11 +175,16 @@ header img {
 .contenidoCarga{
     padding: 2%;
     width: 100%;
+    overflow: auto;
 }
 
 .divValidacion{
-    width: 100%;
-    display: none;
+    width: 94%;
+    background-color: red;
+    color: white;
+    padding: 1%;
+    margin: 0;
+    /*display: none;*/
 }
 
 .tituloInput{
@@ -193,6 +198,7 @@ header img {
     font-size: 1em;
     width: 50%;
 }
+
 .observacion{
     height: 1em;
     width: 50%;
@@ -203,12 +209,78 @@ header img {
     max-height: 200px;
 }
 
+#bolson .contenidoCarga{
+    padding-top: 0px;
+}
+
 .mostrador{
     width: 100%;
     color:white;
 }
 
+.cajaCarga{
+    padding-top: 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+}
 
+.contador{
+    width: 46%;
+    margin: 2%;
+    float: left;
+    background-color: #FACC2E;
+}
+
+.contador p {
+    font-size: 0.6em;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    
+}
+
+.contador #cantidadMostrado,
+.contador #pesoMostrado{
+    font-family: monospace;
+    font-size: 1.2em;
+}
+
+.seccionBolson{
+    width: 48%;
+    float: left;
+    padding: 1%;
+    margin: 0;
+}
+.seccionBolsonSelect{
+    margin:0;
+    width: 96%;
+    padding: 5px;
+    padding-top: 0.2%;
+}
+
+.seccionBolsonSelect select{
+    width: 50%;
+    float: left;
+    font-size: 0.8em;
+    text-align: center;
+    background-color: #FACC2E;
+}
+
+
+.seccionBolson input{
+    margin: 0;
+    width: 90%;
+    font-size: 1em;
+}
+
+.seccionBolson tr{
+    font-size: 0.6em;
+    padding: 1%;
+
+}
+
+.seccionBolson td{
+    border: 1px solid black;
+}
 /*//////FOOTER/////////*/
 footer{
     position: fixed;
@@ -225,18 +297,50 @@ footer{
 #escritorio, /*Escritorio de todas las cargas*/
 /*#carga, /*Carga de los elementos*/
 #elementos, /*Elementos para cargar, cuando tiene varios metodos*/
-/*#camion,*/
+#camion
 #bolson /*Carga de bolson*/
-/*#informacion*/ /*Información de cantidad de cargas*/
-/*#mostradorPeso, *//*///MOSTRADOR DEL PESO EN CARGA///*/
-/*#mostradorCantidad*//*///MOSTRADOR DE CANTIDAD EN CARGA///*/{
+#informacion /*Información de cantidad de cargas*/
+#mostradorPeso, /*///MOSTRADOR DEL PESO EN CARGA///*/
+#mostradorCantidad,/*///MOSTRADOR DE CANTIDAD EN CARGA///*/
+#botonContinuar /*///////BOTON DE CONTINUAR MIXTO//////*/{
     display: none;
 }
 
+#etapaDiv, 
+#subetapaDiv, 
+#materialDiv, 
+#caracteristicaDiv,
+#tablabolson,
+#tablapesomaterial{
+    display: none;
+  }
+@media screen and (max-width: 1200px){
+    .seccionBolson tr{
+        font-size: 0.5em;
+    }
+}
 
+@media screen and (max-width: 1050px){
+    .cajaCarga{
+        padding-top: 3%;
+    }
+
+    .seccionBolson{
+        width: 48%;
+    }
+    
+    .seccionBolson tr{
+        font-size: 0.35em;
+    }
+
+}
 @media screen and (max-width: 700px){
     .ingreso{
         width: 80%;
+    }
+
+    .divValidacion{
+        font-size: 0.5em;
     }
 
     .contenedor{
@@ -247,7 +351,20 @@ footer{
     .botonIngreso{
     width: 30%;
     padding: 20px;
-}
+    }
+    
+    .seccionBolsonSelect select{
+        width: 48%;
+    }
+
+    .seccionBolson tr{
+        font-size: 0.6em;
+    }
+
+    .seccionBolson{
+        width: 97%;
+    }
+    
 }
 
 @media screen and (max-width: 500px){
@@ -261,6 +378,10 @@ footer{
 
     .caja{
         padding: 10%;
+    }
+
+    .cajaCarga{
+        padding-top: 2%;
     }
 
     .fecha,
@@ -295,4 +416,10 @@ footer{
     .contenedorCargaMovil{
         margin-top: 12%;;
     }
+
+    .contador #cantidadMostrado,
+    .contador #pesoMostrado{
+    font-family: monospace;
+    font-size: 0.8em;
+}
 }

@@ -43,7 +43,7 @@
           <button onclick="limpiar();"> ↺ </button>
       </div>
       <div>
-        <div class="caja">
+        <div class="caja cajaCarga">
           <div id="camion" class="contenedorCarga">
             <h1 class="tituloEscritorio cargaTitulo">Carga de datos: CAMIÓN</h1>
             <div class="contenidoCarga">
@@ -58,21 +58,72 @@
                 <textarea type="text" class="observacion" name="observacion" id="observacion"></textarea><br>
                 <input type="hidden"  name="turno" id="turno" value="2">
                 <input type="hidden" name="ingreso" id="ingreso" value="Ingreso">
+                <button id="botonSeguir" class="botonCargar boton" name="btn1" onClick ="user.abrirMetodos()" disabled>Siguiente</button>
               </div>
           </div>
           <div id="bolson" class="contenedorCarga">
             <h1 class="tituloEscritorio cargaTitulo">Carga de datos:</h1>
+            <div class="mostrador" id="mostrador">
+                <div id="mostradorCantidad" class="contador">
+                    <p>Cantidad:</p>
+                    <p id="cantidadMostrado">0</p>
+                </div>
+                <div id="mostradorPeso" class="contador">
+                    <p>Peso total:</p>
+                    <p id="pesoMostrado">0,00</p>
+                </div><br><br>
+            </div>
             <div class="contenidoCarga">
-              <div id = "validadorCamion" class = "divValidacion"></div>
-              <div class="mostrador" id="mostrador">
-                  <div id="mostradorCantidad">
-                      <p>Cantidad de Bolsones:</p>
-                      <p id="cantidadMostrado">0</p>
-                  </div>
-                  <div id="mostradorPeso">
-                      <p>Peso total:</p>
-                      <p id="pesoMostrado">0</p>
-                  </div><br><br>
+              <div id ="validador" class = "divValidacion">¡HAZ INGRESADO UN VALOR VALIDO!</div>
+              <div class="seccionBolsonSelect">
+                <div id="etapaDiv">
+                  <input id="etapa" type="hidden" name="etapa" onblur="gestionarSubEtapa()"><br>
+                </div>
+                <div id="subetapaDiv">
+                    <input id="subetapa" type="hidden" name="subEtapa"><br>
+                </div>  
+                <div id="materialDiv">
+                  <input id="material" type="hidden" name="material">
+                </div>
+                <div id="caracteristicaDiv">
+                  <input type="hidden"  id="caracteristica" name="caracteristica">
+                </div>
+              </div>
+              <div class="seccionBolson">
+                <!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->
+                <input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">
+                <input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">
+                <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de bolsón" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >
+                <input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <button id="botonCargar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.cargar();" disabled>Cargar</button>
+              </div>
+              <div class="seccionBolson">
+                  <table id="resumen">
+                      <tr id="tablabolson">
+                        <td>ID</td>
+                        <td>Nombre</td>
+                        <td>Peso</td>
+                      </tr>
+                      <tr>
+                          <td>89754569</td>
+                          <td>AVELINO JOSE FIGUEIRA FLORES</td>
+                          <td>5000.69</td>
+                      </tr>
+                      <tr>
+                          <td>ID</td>
+                          <td>Nombre</td>
+                          <td>Peso</td>
+                        </tr>
+                      <tr id="tablapesomaterial">
+                        <td>Material</td>
+                        <td>Caracteristica</td>
+                        <td>Peso</td>
+                      </tr>
+                    </table> 
+                    <button disabled id="botonEnviar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.enviar()">Enviar</button>
+                    <button disabled id="botonContinuar" class="boton botonCargar" name="btn1" onClick="metodoParaMixto.continuar()">Continuar</button>
               </div>
             </div>
           </div>
