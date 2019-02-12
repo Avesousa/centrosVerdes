@@ -11,28 +11,57 @@
 var caracteristica, material, nombre, metodoParaCargar, canal, metodoParaMixto;
 var etapa, subetapa;
 var canalPorCv;
-var cv, usuario, coop, metodoDeCarga, camion, user, idIngreso = 0,idBolson = 0;
-var pesoT = 0,pesoEntradaG = 0,pesoSalidaG = 0,cantidad = 0,pesoTotalG = 0;
+var cv, usuario, coop, metodoDeCarga, camion, user, idIngreso = 0,
+    idBolson = 0;
+var pesoT = 0,
+    pesoEntradaG = 0,
+    pesoSalidaG = 0,
+    cantidad = 0,
+    pesoTotalG = 0;
 var elementoCargado = 0;
 var baseVerificar = { RD: "", GG: "", PV: "", VENTA: "", DESCARTE: "", MIXTA: "", CA: "" };
-var idVer = false,pesoVer = false,patenteVer = false,fechaVer = false,horaVer = false;
-var posicionCanal = 0,posicionEtapas = 0,posicionMaterial = 0,posicionCara = [];
-var datoEtapas = [],datoCanal = [],datoMaterialM = [],datoCaracteristicaM = [];
-var datoPeso = [],datoPesoE = [],datoPesoS = [];
-var datoPesoCanal = [],datoPesoECanal = [],datoPesoSCanal = [];
-var datoPesoMaterial = [],datoPesoEMaterial = [],datoPesoSMaterial = [];
-var datoPesoCara = [],datoPesoECara = [],datoPesoSCara = [];
-var datosEditables = [],datoEditableFinal = [],cantidadCara = [],cantidadMaterial = [];
-var cantidadEtapa = [],cantidadCanal = [];
+var idVer = false,
+    pesoVer = false,
+    patenteVer = false,
+    fechaVer = false,
+    horaVer = false;
+var posicionCanal = 0,
+    posicionEtapas = 0;
+var datoPeso = [],
+    datoPesoE = [],
+    datoPesoS = [];
+var datoEtapas = [],
+    datoCanal = [],
+    datoMaterialM = [],
+    datoCaracteristicaM = [];
+var datoPesoCanal = [],
+    datoPesoECanal = [],
+    datoPesoSCanal = [];
+var datoPesoMaterial = [],
+    datoPesoEMaterial = [],
+    datoPesoSMaterial = [],
+    cantidadMaterial = [],
+    posicionMaterial = 0;
+var datoPesoCara = [],
+    datoPesoECara = [],
+    datoPesoSCara = [],
+    cantidadCara = [],
+    posicionCara = [];
+var datosEditables = [],
+    datoEditableFinal = [];
+var cantidadEtapa = [];
+var cantidadCanal = [];
 var listaDeID = [];
-var datosCamion = [],datosBolson = [],datoComun = [];
-var datoMaterial = [],datoCaracteristica = [], datoDelPesoPorMaterial = [];
-var datoBolsonVieja = [],datoCamionVieja = [];
+var datosCamion = [];
+var datosBolson = [];
+var datoComun = [];
+var datoMaterial = [];
+var datoCaracteristica = [];
+var datoBolsonVieja = [],
+    datoCamionVieja = [];
 var banderaEgreso = false;
-var banderaMixto = false;
+var banderamacar = false;
 var botonParaClickear = "botonIngresar";
-var cantidadCargas = 0;
-var banderaDeCargas = 0;
 var cargaDeCamion = ('<div class="cargaDeDatos">'+
 '<!-- Titulo -->'+
 '<div class="tituloDeCargas">'+
@@ -66,16 +95,6 @@ var cargaDeContenido = ('<div class="cargaDeDatos">'+
 '  <div class="tituloDeCargas">'+
 '    <h1>Cargas</h1>'+
 '  </div>'+
-'<div class="mostrador" id="mostrador">'+
-'<div id="mostradorCantidad">'+
-'    <p>Cantidad de Bolsones:</p>'+
-'    <p id="cantidadMostrado">0</p>'+
-'</div>'+
-'<div id="mostradorPeso">'+
-'    <p>Peso total:</p>'+
-'    <p id="pesoMostrado">0</p>'+
-'</div><br><br>'+
-'</div>'+
 '  <div class="cajaDeInput">'+
 '      <div id ="validador" class = "divValidacion"></div>'+
 '      <div id="etapaDiv"><input id="etapa" type="hidden" name="etapa" onblur="gestionarSubEtapa()"><br></div>'+
@@ -85,23 +104,23 @@ var cargaDeContenido = ('<div class="cargaDeDatos">'+
 '      <!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->'+
 '      <input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">'+
 '      <input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">'+
-'       <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de bolsón" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
-'       <input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >'+
-'       <input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
-'       <input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
+'      <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de bolsón" oninput="user.verificarPeso();" value="0">'+
+'      <input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0">'+
+'      <input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso();" value="0">'+
+'      <input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso();" value="0">'+
 '      <!-- DATOS POR DEFAULT-->'+
 '      <button id="botonCargar" class="efecto botongra" name="btn1" onClick="metodoParaCargar.cargar();" disabled>Cargar</button>'+
 '  <div class="resumenBolson">'+
 '    <table id="resumen">'+
 '    <tr id="tablabolson">'+
-'      <td>ID</td>'+
-'      <td>Nombre</td>'+
-'      <td>Peso</td>'+
+'      <th>ID</th>'+
+'      <th>Nombre</th>'+
+'      <th>Peso</th>'+
 '    </tr>'+
 '    <tr id="tablapesomaterial">'+
-'      <td>Material</td>'+
-'      <td>Caracteristica</td>'+
-'      <td>Peso</td>'+
+'      <th>Material</th>'+
+'      <th>Caracteristica</th>'+
+'      <th>Peso</th>'+
 '    </tr>'+
 '    </table> '+
 '    <button disabled id="botonEnviar" class="efecto botongra" name="btn1" onClick="metodoParaCargar.enviar()">Enviar</button>'+
@@ -117,25 +136,16 @@ var cargaDeElementos = '<div class="contenedor">'+
 '  </div>'+
 '</div>'+
 '</div>';
-var cargaMixta = '<div class="cargaDeDatos">'+
-'<table id="tablaDeEstadistica">'+
-'<tr id="listaDeEstadistica">'+
-'        <td>Canal</td>'+
-'        <td>Cantidad</td>'+
-'        <td>Peso</td>'+
-'</tr>'+
-'</table>'+
-'<div id="mostradorPesoTotal">'+
-'    <p>Peso total:</p>'+
-'    <p id="pesoTotalMostrado">0</p>'+
-'</div>'+
+var cargaMixta = '<div class="contenedor" id="mixta">'+
+'<div class="cargaDeDatos">'+
 '  <div class="tituloDeCargas">'+
 '    <h1>Selecciona el canal de recolección</h1>'+
 '  </div>'+
 '  <div id="imagenMixto" class="cajaDeInput">'+
 '  </div>'+
 '  <button id="botonEnviarMixto" disabled class="efecto botongra" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>'+
-'</div> ';
+'</div> '+
+'</div>  '
 //////////////////////////////////////////VARIABLES PARA HACER CONEXIÓN CON GOOGLE////////////////////////////
 var datoNombres = [];
 var datoClaves = [];
@@ -220,15 +230,9 @@ class Usuario {
                     camion = new Camion();
                     metodoParaCargar.abrir();
                     break;
-                case "cantidadPesoE":
-                    metodoParaCargar = new cantidadPesoE();
-                    camion = new Camion();
-                    metodoParaCargar.abrir();
-                    break;
-                case "entradaSalidaE":
-                    metodoParaCargar = new entradaSalidaE();
-                    camion = new Camion();
-                    metodoParaCargar.abrir();
+                case "entradaSalida":
+                    var objeto = new entradaSalida();
+                    objeto.alerta();
                     break;
                 case "mixta":
                     metodoParaMixto = new mixta();
@@ -265,27 +269,20 @@ class Usuario {
     verificarID(baseDeDatos) {
             document.getElementById("validador").style.display = "none";
             var id = document.getElementById("id").value;
-            if(id != ""){
-                if(id != "0"){
-                    if (baseDeDatos != "RD" && baseDeDatos != "GG" && baseDeDatos != "PV" &&
-                        baseDeDatos != "MIXTA" && baseDeDatos != "CA" && baseDeDatos != "DESCARTE" &&
-                        baseDeDatos != "VENTA" && baseDeDatos != "") {
-                        compararID(id);
-                    } else { idVer = true; }
-                } else {
-                    idVer = true;
-                    nombre = "Id no recordado";
-                }
-                if (idVer) {
-                    validacion(true, "<p>El id está asociado a: " + nombre + "</p>", "validador");
-                    return idVer = true;
-                } else if (idVer == 1) {
-                    idVer = false;
-                    return validador.style.display = "none";
-                } else {
-                    idVer = false;
-                    return validacion(false, "<p>El ID ingresado no está asociado en la base de datos.</p>", "validador");
-                }
+            if (baseDeDatos != "RD" && baseDeDatos != "GG" && baseDeDatos != "PV" &&
+                baseDeDatos != "MIXTA" && baseDeDatos != "CA" && baseDeDatos != "DESCARTE" &&
+                baseDeDatos != "VENTA" && baseDeDatos != "") {
+                compararID(id);
+            } else { idVer = true; }
+            if (idVer) {
+                validacion(true, "<p>El id está asociado a: " + nombre + "</p>", "validador");
+                return idVer = true;
+            } else if (idVer == 1) {
+                idVer = false;
+                return validador.style.display = "none";
+            } else {
+                idVer = false;
+                return validacion(false, "<p>El ID ingresado no está asociado en la base de datos.</p>", "validador");
             }
         }
         //Verificar el peso :D
@@ -421,12 +418,6 @@ class Usuario {
         boton.disabled = !(banderaP && fechaVer && horaVer);
         document.getElementById("observacion").focus();
     }
-        //verificar Cantidad :Ddocument.getElementById("caracteristica").value = "Bolsones";
-    verificarCantidad(){
-        var boton = document.getElementById("botonCargar");
-        var cantidad = metodoParaCargar.cantidad.value;
-        boton.disabled = !(cantidad > 0 && cantidad != "");
-    }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -438,16 +429,12 @@ class Metodo {
         this.camion = document.getElementById('camion');
         this.carga = document.getElementById('bolson');
         this.mixta = document.getElementById('mixta');
-        this.elemento = document.getElementById('elementos');
         this.id = document.getElementById('id');
         this.nombre = document.getElementById('nombre');
         this.pesoentrada = document.getElementById('pesoEntrada');
         this.pesosalida = document.getElementById('pesoSalida');
         this.caracteristica = document.getElementById("caracteristicaDiv");
         this.material = document.getElementById("materialDiv");
-        this.tablaPesoTotal = document.getElementById("mostradorPesoTotal");
-        this.pesoMostrar = document.getElementById("pesoTotalMostrado");
-        this.tablaEstadistica = document.getElementById("tablaDeEstadistica");
         this.peso;
         this.etapa = document.getElementById('etapa');
         this.subetapa = document.getElementById('subetapa');
@@ -458,19 +445,12 @@ class Metodo {
         this.pesoMaterial;
         this.pesoCaracteristica;
         this.informacion;
-        this.camion.style.display = "none";
-        this.elemento.style.display = "none";
-        this.cantidadBandera = 1;
-        console.log(this.tablaEstadistica);
-        console.log(this.tablaPesoTotal);
-        console.log(this.pesoMostrar);
-        this.tablaEstadistica.style.display = "none";
-        this.tablaPesoTotal.style.display = "none";
-        this.pesoMostrar.style.display = "none";
         cargarListaDeID()
     }
+
     enviar() {
         var dato = datoEditableFinal.filter(elemento => elemento != null);
+        definirBanderas();
         if (dato.length > 1) {
             darCantidadCorrespondiente();
             camion.crearCamionParticipativo()
@@ -488,50 +468,45 @@ class Metodo {
         document.getElementById("botonEnviar").disabled = true;
         document.getElementById("botonEnviarMixto").disabled = true;
         limpiar();
-        alert("¡Se ha cargado EXITOSAMENTE el camión!");
     }
+
     cargar(esOnoBolson) {
         etapa = document.getElementById("etapa").value;
         subetapa = document.getElementById("subetapa").value;
         caracteristica = document.getElementById("caracteristica").value;
         material = document.getElementById("material").value;
         document.getElementById("botonEnviar").disabled = false;
-        document.getElementById("botonContinuar").disabled = false; 
+        document.getElementById("botonContinuar").disabled = false;
         crearResumen("resumen", this.informacion);
         var etapaConcatenada = etapa + subetapa;
-        console.log(this.cantidadBandera);
-        this.pesoCanal = pesoPorCanal(this.peso[5], this.peso[3], this.peso[4],this.cantidadBandera);
-        this.pesoMaterial = pesoPorMaterial(this.peso[2], this.peso[0], this.peso[1],this.cantidadBandera);
-        this.pesoEtapa = pesoPorEtapa(etapaConcatenada, this.peso[2], this.peso[0], this.peso[1],this.cantidadBandera);
-        this.pesoCaracteristica = pesoPorCaracteristica(this.peso[2], this.peso[0], this.peso[1],this.cantidadBandera);
+        this.pesoCanal = pesoPorCanal(this.peso[5], this.peso[3], this.peso[4]);
+        this.pesoMaterial = pesoPorMaterial(this.peso[2], this.peso[0], this.peso[1]);
+        this.pesoEtapa = pesoPorEtapa(etapaConcatenada, this.peso[2], this.peso[0], this.peso[1]);
+        this.pesoCaracteristica = pesoPorCaracteristica(this.peso[2], this.peso[0], this.peso[1]);
         definirDatos(this.pesoCanal, this.pesoEtapa, this.pesoMaterial, this.pesoCaracteristica, caracteristica,
             material, subetapa, etapa, this.pesoUnitario.value, cantidad);
-            validacion(true, "<p>Se ha cargado el bolsón correctamente</p>", "validador");
-            idVer = false, pesoVer = false;
-            document.getElementById("botonCargar").disabled = true;
-            this.idDGREC = this.id.value;
-            if (canal == "PV") { this.idDGREC = "PV-" + this.id.value; }
-            datosEditables.push([this.id.value, this.peso[0], this.peso[1], this.peso[2],
-                caracteristica, material, subetapa, etapa, nombre,
-                idBolson, canal, this.idDGREC, this.pesoUnitario.value, cantidad, esOnoBolson,banderaDeCargas
-            ]);
-            cantidadCargas++;
-            banderaDeCargas = 0;
-            this.id.value = "";
-            this.pesoentrada.value = "";
-            this.pesosalida.value = "";
-            cambiarBoton();
-            clickear();
-            document.getElementById("cantidadMostrado").innerHTML = cantidadCargas;
-            document.getElementById("pesoMostrado").innerHTML = Math.round(pesoT * 100) / 100;
+        validacion(true, "<p>Se ha cargado el bolsón correctamente</p>", "validador");
+        idVer = false, pesoVer = false;
+        document.getElementById("botonCargar").disabled = true;
+        this.idDGREC = this.id.value;
+        if (canal == "PV") { this.idDGREC = "PV-" + this.id.value; }
+        datosEditables.push([this.id.value, this.peso[0], this.peso[1], this.peso[2],
+            caracteristica, material, subetapa, etapa, nombre,
+            idBolson, canal, this.idDGREC, this.pesoUnitario.value, cantidad, esOnoBolson
+        ]);
+        this.id.value = "";
+        this.pesoentrada.value = "";
+        this.pesosalida.value = "";
     }
+
 }
 class cargaBolson extends Metodo {
     abrir() {
+        this.camion.style.display = "none";
         this.carga.style.display = "inline";
         this.mixta.style.display = "none";
         this.id.type = "number";
-        this.id.setAttribute('oninput', 'user.verificarID("' + baseVerificar[canal] + '"); cambiarBoton(); clickear();');
+        this.id.setAttribute('oninput', 'user.verificarID("' + baseVerificar[canal] + '");');
         this.id.setAttribute('onblur', 'setTimeout(function(){user.verificar();},800);');
         this.id.setAttribute("autofocus", "true");
         this.id.value = "";
@@ -544,22 +519,19 @@ class cargaBolson extends Metodo {
         this.material.value = "Mixto";
         this.cantidad = 0;
         cargarListaDeID();
-        this.id.focus();
         document.getElementById('etapa').value = "";
         document.getElementById('subetapa').value = "";
         gestionarEtapas();
         document.getElementById("tablabolson").style.display = "inline";
-        document.getElementById("caracteristica").value = "Bolsones";
+        document.getElementById("caracteristica").value = "bolson";
         document.getElementById("material").value = "mixto";
         recibirBolson();
-        document.getElementById("mostradorPeso").style.display = "inline";
-        document.getElementById("mostradorCantidad").style.display = "inline";
     }
 
     cargar() {
         recibirBolson();
         this.peso = resolverPeso(this.pesoentrada.value, this.pesosalida.value, "ingreso");
-        this.informacion = [this.id.value, nombre, (Math.round(this.peso[2] * 100) / 100)];
+        this.informacion = [this.id.value, nombre, this.peso[2]];
         this.id.focus();
         super.cargar("bolson");
         this.pesosalida.value = 0;
@@ -579,34 +551,22 @@ class cantidadPesoASOC extends Metodo {
 }
 class mixta extends Metodo {
     abrir() {
-        this.carga.style.display = "none";
-        this.mixta.style.display = "inline";
-        banderaMixto = true;
         this.mostrarCanales();
         document.getElementById("botonEnviar").style.display = "none";
         document.getElementById("botonContinuar").style.display = "inline";
+        this.camion.style.display = "none";
+        this.carga.style.display = "none";
+        this.mixta.style.display = "inline";
     }
 
     continuar() {
         this.mixta.style.display = "inline";
         this.carga.style.display = "none";
-        this.tablaEstadistica.style.display = "inline";
-        this.tablaPesoTotal.style.display = "inline";
-        this.pesoMostrar.style.display = "inline";
         var link = document.getElementById(canal);
         var img = document.getElementById("imagen" + canal);
         link.onclick = "";
         img.src = "http://carlitos.com.ar/DGREC/image/raoscuro.png"; //'"http://carlitos.com.ar/DGREC/image/'+canal+'.png"');
         document.getElementById("botonEnviarMixto").disabled = false;
-        botonParaClickear = "botonEnviar";
-        var estadistica = [canal,cantidadCargas,pesoT];
-        console.log(estadistica);
-        crearResumen("tablaDeEstadistica",estadistica,true);
-        this.pesoMostrar.innerHTML = pesoTotalG;
-        pesoT = 0;
-        cantidadCargas = 0;
-        document.getElementById("cantidadMostrado").innerHTML = 0;
-        document.getElementById("pesoMostrado").innerHTML = 0;
         vaciarResumen();
     }
 
@@ -615,12 +575,10 @@ class mixta extends Metodo {
     }
 
     agregarMenu(array) {
-        console.log("***************AGREGAR MENU***************");
-        console.log(array);
+    
         var div = document.getElementById("imagenMixto");
-        for (var i = 0; array.length > i; i++) {
+        for (var i = 0; array.length >= (1 + i); i++) {
             var valor = array[i];
-            console.log(valor);
             if (valor != "MIXTA" && valor != "VENTA" && valor != "DESCARTE") {
                 var link = document.createElement('a');
                 link.setAttribute('id', valor);
@@ -635,11 +593,11 @@ class mixta extends Metodo {
                 div.appendChild(link);
             }
         }
-        console.log("***************AGREGAR MENU***************");
     }
 }
 class salidaMaterialE extends Metodo {
     abrir() {
+        this.camion.style.display = "none";
         this.carga.style.display = "inline";
         this.mixta.style.display = "none";
         document.getElementById("ingreso").value = "Egreso";
@@ -655,13 +613,11 @@ class salidaMaterialE extends Metodo {
         this.pesoUnitario.value = "N/A";
         this.pesosalida.type = "number";
         this.pesosalida.value = "";
-        this.pesosalida.focus();
         this.material.style.display = "inline";
         this.caracteristica.style.display = "inline";
         seleccionDeMateriales(datoMaterial, "materialDiv", "materialF");
         seleccionDeMateriales(datoCaracteristica, "caracteristicaDiv", "caracteristicaF");
         banderaEgreso = true;
-        document.getElementById("mostradorPeso").style.display = "inline";
     }
 
     cargar() {
@@ -669,96 +625,11 @@ class salidaMaterialE extends Metodo {
         var materialR = document.getElementById("materialF").value;
         var caracteristicaR = document.getElementById("caracteristicaF").value;
         this.peso = resolverPeso(this.pesosalida.value, this.pesoentrada.value, "egreso");
-        this.informacion = [materialR, caracteristicaR, (Math.round(this.peso[2] * 100) / 100)];
+        this.informacion = [materialR, caracteristicaR, this.peso[2]];
         document.getElementById("material").value = materialR;
         document.getElementById("caracteristica").value = caracteristicaR;
-        this.pesosalida.focus();
         super.cargar("material");
         this.pesoentrada.value = 0;
-    }
-}
-class cantidadPesoE extends Metodo{
-    abrir() {
-        this.carga.style.display = "inline";
-        this.mixta.style.display = "none";
-        document.getElementById("ingreso").value = "Egreso";
-        camion.ingreso = "Egreso"
-        etapa = "N/A";
-        subetapa = "N/A";
-        this.etapa.value = "N/A";
-        this.subetapa.value = "N/A";
-        nombre = "N/E";
-        this.id.value = "N/A";
-        this.pesoentrada.value = 0;
-        document.getElementById("tablapesomaterial").style.display = "inline";
-        this.pesosalida.value = 0;
-        this.cantidad.value = "";
-        this.cantidad.type = "number";
-        this.cantidad.setAttribute('oninput','user.verificarCantidad(); cambiarBoton(); clickear();');
-        this.cantidad.focus();
-        this.material.style.display = "inline";
-        document.getElementById("caracteristica").value = "Bolsones";
-        seleccionDeMateriales(datoMaterial, "materialDiv", "materialF");
-        banderaEgreso = true;
-        document.getElementById("mostradorPeso").style.display = "inline";
-    }
-
-    cargar() {
-        this.pesosalida.value = this.multiplicarPeso();
-        var materialR = document.getElementById("materialF").value;
-        this.peso = resolverPeso(this.pesosalida.value, this.pesoentrada.value, "egreso");
-        this.informacion = [materialR, this.cantidad.value, (Math.round(this.peso[2] * 100) / 100)];
-        document.getElementById("material").value = materialR;
-        this.cantidadBandera = parseInt(this.cantidad.value);
-        cantidad += parseInt(this.cantidadBandera)-1;
-        console.log(this.cantidad.value);
-        banderaDeCargas = (this.cantidadBandera-1);
-        super.cargar("material");
-        this.pesoentrada.value = 0;
-        this.pesosalida.value = 0;
-        this.cantidad.focus();
-    }
-    
-    multiplicarPeso(){
-        var materialR = document.getElementById("materialF").value;
-        for(var i = 0; i < datoMaterial.length; i++){
-            if(datoMaterial[i][0] == materialR){
-                this.pesoUnitario = datoDelPesoPorMaterial[i][0];
-                return (this.cantidad.value * parseFloat(datoDelPesoPorMaterial[i][0]));
-            }
-        }
-    }
-}
-class entradaSalidaE extends Metodo{
-    abrir() {
-        this.carga.style.display = "inline";
-        this.mixta.style.display = "none";
-        document.getElementById("ingreso").value = "Egreso";
-        camion.ingreso = "Egreso"
-        etapa = "N/A";
-        subetapa = "N/A";
-        this.etapa.value = "N/A";
-        this.subetapa.value = "N/A";
-        nombre = "N/E";
-        this.id.value = "N/A";
-        this.pesoentrada.value = "";
-        this.pesosalida.value = "";
-        document.getElementById("tablapesomaterial").style.display = "inline";
-        this.cantidad.value = 0;
-        this.pesoentrada.type = "number";
-        this.pesosalida.type = "number";
-        this.pesoentrada.focus();
-        this.caracteristica.value = "Bolsones";
-        this.material.value = "Mixto";
-        banderaEgreso = true;
-        document.getElementById("mostradorPeso").style.display = "inline";
-    }
-
-    cargar() {
-        this.peso = resolverPeso(this.pesosalida.value, this.pesoentrada.value, "egreso");
-        this.informacion = [this.material.value, this.caracteristica.value, (Math.round(this.peso[2] * 100) / 100)];
-        super.cargar("material");
-        this.pesoentrada.focus();
     }
 }
 
@@ -786,6 +657,7 @@ class Camion {
         recibirIngreso();
         this.tipoCamion = ['CAMION COMPUESTO', 'CAMION PARTICIPATIVO', 'CAMION ÚNICO', 'BOLSON'];
     }
+
     crearCamionUnico() {
         var fechaHoy = new Date();
         var fechaA = (fechaHoy.getDate() + "/" + (fechaHoy.getMonth() + 1) + "/" + fechaHoy.getFullYear());
@@ -829,19 +701,18 @@ class Camion {
         var valorSub;
         var valorMaterial;
         var valorCaracteristica;
-        var valorParticipacion = "N/A";
+        var valorParticipacion = "";
         var fechaHoy = new Date();
         var fechaA = (fechaHoy.getDate() + "/" + (fechaHoy.getMonth() + 1) + "/" + fechaHoy.getFullYear());
         var horaA = (fechaHoy.getHours() + ":" + fechaHoy.getMinutes());
         var fechaActual = (fechaA + " " + horaA);
         var participacion = crearParticipacion();
         var dato = datoEditableFinal.filter(elemento => elemento != null);
-        if (participacion[0] == "") { valorCanal = canal; } else { valorCanal = participacion[0];valorParticipacion = participacion[0];}
-        if (participacion[1] == "") {valorEtapa = "N/A";valorSub = "N/A";
-        } else {valorEtapa = participacion[1];valorSub = participacion[1];}
-        if (participacion[2] == "") { valorMaterial = material; } else { valorMaterial = participacion[4];valorParticipacion = participacion[2]; }
-        if (participacion[3] == "") { valorCaracteristica = caracteristica; } else { valorCaracteristica = participacion[5];valorParticipacion = participacion[3]; }
-
+        if (participacion[0] == "") { valorCanal = canal; valorParticipacion = "N/A";} else { valorCanal = participacion[0];valorParticipacion += participacion[0];}
+        if (participacion[1] == "") {valorEtapa = "N/A";valorSub = "N/A"; valorParticipacion = "N/A";
+        } else {valorEtapa = participacion[1];valorSub = participacion[1]; valorParticipacion += participacion[1]}
+        if (participacion[2] == "") { valorMaterial = material; valorParticipacion = "N/A"; } else { valorMaterial = participacion[4];valorParticipacion += participacion[2]; }
+        if (participacion[3] == "") { valorCaracteristica = caracteristica; valorParticipacion = "N/A";} else { valorCaracteristica = participacion[5];valorParticipacion += participacion[3]; }
         datosCamion.push([this.tipoCamion[0], usuario, fechaActual, idIngreso, coop, cv,
             this.fecha, this.anio, this.mes, this.dia, this.turno, this.hora, this.ingreso,
             this.patente, valorCanal, valorMaterial, valorCaracteristica, cantidad,
@@ -851,64 +722,53 @@ class Camion {
         ]);
     }
     crearCamionParticipativo() {
+        console.log("*********************CREAR CAMION PARTICIPATIVO************************");
         var fechaHoy = new Date();
         var fechaA = (fechaHoy.getDate() + "/" + (fechaHoy.getMonth() + 1) + "/" + fechaHoy.getFullYear());
         var horaA = (fechaHoy.getHours() + ":" + fechaHoy.getMinutes());
         var fechaActual = (fechaA + " " + horaA);
         var dato = datoEditableFinal.filter(elemento => elemento != null);
+        if(banderamacar){
+            var datoEditable = datosEditables.filter(elemento => elemento != null);
+        }
+        console.log("-----------------DATOS IMPORTANTES DE CAMION PARTICIPATIVO ------------------------");
+        console.log(dato);
+        console.log(datoMaterialM);
+        console.log(datoCaracteristicaM);
+        console.log(datoPesoEMaterial + " datoPesoEMaterial");
+        console.log(datoPesoSMaterial + " datoPesoSMaterial");
+        console.log(datoPesoMaterial + " datoPesoMaterial");
+        console.log(datoPesoECara + " datoPesoECara");
+        console.log(datoPesoSCara + " datoPesoSCara");
+        console.log(datoPesoCara + " datoPesoCara");
+        console.log("-----------------DATOS IMPORTANTES DE CAMION PARTICIPATIVO ------------------------");
         for (var i = 0; i < dato.length; i++) {
-            var pesoE;
-            var pesoS;
-            var peso;
             switch (dato[i][8]) {
                 case "canal":
-                    for (var j = 0; j < datoCanal.length; j++) {
-                        if (datoCanal[j][0] == dato[i][5]) {
-                            pesoE = scannerPeso(datoPesoECanal[j]);
-                            pesoS = scannerPeso(datoPesoSCanal[j]);
-                            peso = scannerPeso(datoPesoCanal[j]);
-                        }
-                    }
+                    ayudador(datoPesoECanal,datoPesoSCanal,datoPesoCanal,datoCanal,dato[i],5,10,datoEditable,fechaActual);
                     break;
                 case "etapa":
-                    for (var j = 0; j < datoEtapas.length; j++) {
-                        if (datoEtapas[j][0] == dato[i][4] + dato[i][3]) {
-                            pesoE = scannerPeso(datoPesoE[j]);
-                            pesoS = scannerPeso(datoPesoS[j]);
-                            peso = scannerPeso(datoPeso[j]);
-                        }
-                    }
+                    ayudador(datoPesoE,datoPesoS,datoEtapas,datoPeso,dato[i],4,10,datoEditable,fechaActual,7,6);
                     break;
                 case "material":
-                    for (var j = 0; j < datoMaterialM.length; j++) {
-                        if (datoMaterialM[j][0] == dato[i][2]) {
-                            pesoE = scannerPeso(datoPesoEMaterial[j]);
-                            pesoS = scannerPeso(datoPesoSMaterial[j]);
-                            peso = scannerPeso(datoPesoMaterial[j]);
-                        }
-                    }
+                console.log("ENTRO MATERIAL");
+                    ayudador(datoPesoEMaterial,datoPesoSMaterial,datoPesoMaterial,datoMaterialM,dato[i],2,5,datoEditable,fechaActual);
+                    console.log(datosCamion);
+                    console.log(datoComun);
                     break;
                 case "caracteristica":
-                    for (var j = 0; j < datoCaracteristicaM.length; j++) {
-                        if (datoCaracteristicaM[j][0] == dato[i][2]) {
-                            pesoE = scannerPeso(datoPesoECara[j]);
-                            pesoS = scannerPeso(datoPesoSCara[j]);
-                            peso = scannerPeso(datoPesoCara[j]);
-                        }
-                    }
+                console.log("ENTRO CARACTERISTICA");
+                    ayudador(datoPesoECara,datoPesoSCara,datoPesoCara,datoCaracteristicaM,dato[i],1,4,datoEditable,fechaActual);
+                    console.log(datosCamion);
+                    console.log(datoComun);
                     break;
             }
-            datosCamion.push([this.tipoCamion[1], usuario, fechaActual, idIngreso, coop, cv,
-                this.fecha, this.anio, this.mes, this.dia, this.turno, this.hora, this.ingreso,
-                this.patente, dato[i][5], dato[i][2], dato[i][1],
-                dato[i][7], dato[i][6], pesoE, pesoS, peso, scannerPeso(pesoTotalG),
-                this.observacion, dato[i][4], dato[i][3], dato[i][0],
-                dato[i][0], dato[i][0], dato[i][0]
-            ]);
-            datoComun.push([dato[i][5], dato[i][4],
-                dato[i][3], peso, dato[i][8], dato[i][1], dato[i][2]
-            ]);
+            console.log("+++++++datocomun++++++++++");
+            console.log(datoComun);
+            console.log("+++++++datocomun++++++++++");
         }
+        console.log("*********************SALIO DE CAMION PARTICIPATIVO************************");
+
     }
     crearBolson() {
         var dato = datosEditables.filter(elemento => elemento != null);
@@ -951,22 +811,11 @@ class Camion {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////FUNCIONES DE JAVASCRIPT////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function crearTablaPesoMixto(){
-
-}
-
-function cambiarBoton(){
-    var btnCargar = document.getElementById("botonCargar");
-    console.log("*/*/*/*/****boton cargar*********/*/*/*/*");
-    console.log(btnCargar.disabled)
-    if(btnCargar.disabled){
-        if(!banderaMixto){
-            botonParaClickear = "botonEnviar";
-        } else{
-            botonParaClickear = "botonContinuar";
+function definirBanderas(){
+    for(var i = 0; i < datoEditableFinal.length; i++){
+        if(datoEditableFinal[i][8] != datoEditableFinal[i+1][8]){
+            return banderamacar = true;
         }
-    } else{
-        botonParaClickear = "botonCargar";
     }
 }
 
@@ -1025,57 +874,48 @@ function clickear() {
 clickear();
 
 function definirDatos(porCanal, porEtapa, porMaterial, porCara, caracteristica, material, subetapad, etapad, pesoun, cantidad) {
-    console.log("**************ENTRANDO A DEFINIR DATOS********************");
-    console.log(porEtapa + " por etapa");
-    console.log(porCanal + " por Canal");
-    console.log(porMaterial + " por Material");
-    console.log(porCara + " por Caracteristica");
 
     if (porCanal && porEtapa && porMaterial && porCara) {
-        console.log("todo true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "definir"
         ]);
         condicionar();
     } else if (porCanal && !porEtapa && !porMaterial && !porCara) {
-        console.log("solo con canal true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "canal"
         ]);
         condicionar();
     } else if (!porCanal && porEtapa && !porMaterial && !porCara) {
-        console.log("solo con etapa true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "etapa"
         ]);
         condicionar();
     } else if (!porCanal && !porEtapa && porMaterial && !porCara) {
-        console.log("solo con material true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "material"
         ]);
         condicionar();
     } else if (porCanal && porEtapa && !porMaterial && !porCara) {
-        console.log("con canal y etapa true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "canal"
         ]);
         condicionar();
     } else if (!porCanal && !porEtapa && porMaterial && porCara) {
-        console.log("con material y caracteristica true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "caracteristica"
         ]);
         condicionar();
     } else if (!porCanal && !porEtapa && !porMaterial && porCara) {
-        console.log("solo caracteristica true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "caracteristica"
         ]);
         condicionar();
+    } else if(!porCanal && !porEtapa && !porMaterial && !porCara){
+        datoEditableFinal.push(["N/A", caracteristica, material,
+            subetapad, etapad, canal, pesoun, cantidad, (datoEditableFinal[datoEditableFinal.length-1][8])
+        ]);
+        condicionar();
     }
-    console.log(datoEditableFinal);
-    console.log("**************SALIENDO DE DEFINIR DATOS********************");
 
 }
 
@@ -1115,6 +955,7 @@ function condicionar() {
 }
 
 function crearParticipacion() {
+    console.log("**************** CREAR PARTICIPACION *****************************");
     var banderaCanal = false;
     var banderaEtapa = false;
     var banderaMaterial = false;
@@ -1126,56 +967,57 @@ function crearParticipacion() {
     var resultadoMaterialReducido = "";
     var resultadoCaraReducido = "";
     for (var i = 0; datoComun.length > i; i++) {
+        console.log(datoComun);
+        console.log(datoMaterialM);
+        console.log(datoCaracteristicaM);
         switch (datoComun[i][4]) {
             case "canal":
-                //for(var g = 0; g < datoCanal.length; g++){
-                if (datoCanal[i][0] == datoComun[i][0]) {
-                    if (!banderaCanal) {
-                        resultadoCanal = (datoComun[i][0] + datoCanal[i][1]);
-                        banderaCanal = true;
-                    } else {
-                        resultadoCanal = resultadoCanal + ('-' + datoComun[i][0] + datoCanal[i][1]);
-                    }
-                }
-                //}
+                var r = ayudarACrearParticipacion(datoComun[i][0],datoCanal,banderaCanal,resultadoCanal);
+                banderaCanal = r[1];
+                resultadoCanal = r[0];
                 break;
             case "etapa":
                 if (datoComun[i][1] != "N/A") { var conca = datoComun[i][1] + datoComun[i][2]; } else { var onca = "" };
-                if (datoEtapas[i][0] == conca) {
-                    if (!banderaEtapa) {
-                        resultadoEtapa = ((conca + datoEtapas[i][1]));
-                        banderaEtapa = true;
-                    } else {
-                        resultadoEtapa = resultadoEtapa + ('-' + (conca + datoEtapas[i][1]));
-                    }
-                }
+                var r = ayudarACrearParticipacion(conca,datoEtapas,banderaEtapa,resultadoEtapa);
+                banderaEtapa = r[1];
+                resultadoEtapa = r[0];
                 break;
             case "caracteristica":
-                if (datoCaracteristicaM[i][0] == datoComun[i][0]) {
-                    if (!banderaCara) {
-                        resultadoCara = (datoComun[i][0] + datoCaracteristicaM[i][1]);
-                        banderaCara = true;
-                    } else {
-                        resultadoCara = resultadoCara + ('-' + datoComun[i][0] + datoCaracteristicaM[i][1]);
-                    }
-                }
+                var r = ayudarACrearParticipacion(datoComun[i][5],datoCaracteristicaM,banderaCara,resultadoCara);
+                banderaEtapa = r[1];
+                resultadoEtapa = r[0];
                 resultadoCaraReducido = "VARIOS-COMPUESTO";
                 break;
             case "material":
-                if (datoMaterialM[i][0] == datoComun[i][6]) {
-                    if (!banderaMaterial) {
-                        resultadoMaterial = (datoComun[i][6] + datoMaterialM[i][1]);
-                        banderaMaterial = true;
-                    } else {
-                        resultadoMaterial = resultadoMaterial + ('-' + datoComun[i][6] + datoMaterialM[i][1]);
-                    }
-                }
+                var r = ayudarACrearParticipacion(datoComun[i][6],datoMaterialM,banderaMaterial,resultadoMaterial);
+                banderaEtapa = r[1];
+                resultadoEtapa = r[0];
                 resultadoMaterialReducido = "MIXTO-COMPUESTO";
                 break;
         }
     }
+    console.log("************* SALIDA DE CREAR PARTICIPACIÓN ***********************");
+    console.log(resultadoMaterial);
+    console.log(resultadoMaterial);
     return [resultadoCanal,resultadoEtapa,resultadoMaterial,resultadoCara,
             resultadoMaterialReducido,resultadoCaraReducido];
+}
+
+function ayudarACrearParticipacion(valor,array,bandera,resultadoAnterior){
+    var resultado = "";
+    for(var i = 0; array.length > i; i++){
+        if(valor == array[i][0]){
+            if(!bandera){
+                resultado = (valor + array[i][1]);
+                bandera = true;
+                return [resultado,bandera]
+            } else {
+                resultado = resultadoAnterior + ('-' + valor + array[i][1]);
+                return [resultado,bandera];
+            }
+        }
+    }
+
 }
 
 function darCantidadCorrespondiente() {
@@ -1194,7 +1036,7 @@ function darCantidadCorrespondiente() {
     }
 }
 
-function pesoPorCanal(peso, pesoEntrada, pesoSalida,cantidad) {
+function pesoPorCanal(peso, pesoEntrada, pesoSalida) {
     var bandera = true;
     for (var i = 0; i < datoCanal.length; i++) {
         if (datoCanal[i][0] == canal) {
@@ -1202,7 +1044,7 @@ function pesoPorCanal(peso, pesoEntrada, pesoSalida,cantidad) {
             datoPesoECanal[i] = parseFloat(datoPesoECanal[i]) + pesoEntrada;
             datoPesoSCanal[i] = parseFloat(datoPesoSCanal[i]) + pesoSalida;
             datoCanal[i][1] = parseFloat(datoCanal[i][1]) + peso;
-            cantidadCanal[i] = (cantidadCanal[i] + cantidad);
+            cantidadCanal[i] = (cantidadCanal[i] + 1);
             bandera = false;
         }
     }
@@ -1211,15 +1053,14 @@ function pesoPorCanal(peso, pesoEntrada, pesoSalida,cantidad) {
         datoPesoECanal.push(pesoEntrada);
         datoPesoSCanal.push(pesoSalida);
         datoCanal.push([canal, peso, posicionCanal]);
-        cantidadCanal.push(cantidad);
+        cantidadCanal.push(1);
         posicionCanal++;
     }
-    console.log(cantidadCanal);
     return bandera;
 
 }
 
-function pesoPorMaterial(peso, pesoEntrada, pesoSalida,cantidad) {
+function pesoPorMaterial(peso, pesoEntrada, pesoSalida) {
     var bandera = true;
     for (var i = 0; i < datoMaterialM.length; i++) {
         if (datoMaterialM[i][0] == material) {
@@ -1227,7 +1068,7 @@ function pesoPorMaterial(peso, pesoEntrada, pesoSalida,cantidad) {
             datoPesoEMaterial[i] = parseFloat(datoPesoEMaterial[i]) + pesoEntrada;
             datoPesoSMaterial[i] = parseFloat(datoPesoSMaterial[i]) + pesoSalida;
             datoMaterialM[i][1] = parseFloat(datoMaterialM[i][1]) + peso;
-            cantidadMaterial[i] = (cantidadMaterial[i] + cantidad);
+            cantidadMaterial[i] = (cantidadMaterial[i] + 1);
             bandera = false;
         }
     }
@@ -1236,14 +1077,14 @@ function pesoPorMaterial(peso, pesoEntrada, pesoSalida,cantidad) {
         datoPesoEMaterial.push(pesoEntrada);
         datoPesoSMaterial.push(pesoSalida);
         datoMaterialM.push([material, peso, posicionMaterial]);
-        cantidadMaterial.push(cantidad);
+        cantidadMaterial.push(1);
         posicionMaterial++;
     }
     return bandera;
 
 }
 
-function pesoPorCaracteristica(peso, pesoEntrada, pesoSalida,cantidad) {
+function pesoPorCaracteristica(peso, pesoEntrada, pesoSalida) {
     var bandera = true;
     for (var i = 0; i < datoCaracteristicaM.length; i++) {
         if (datoCaracteristicaM[i][0] == caracteristica) {
@@ -1251,7 +1092,7 @@ function pesoPorCaracteristica(peso, pesoEntrada, pesoSalida,cantidad) {
             datoPesoECara[i] = parseFloat(datoPesoECara[i]) + pesoEntrada;
             datoPesoSCara[i] = parseFloat(datoPesoSCara[i]) + pesoSalida;
             datoCaracteristicaM[i][1] = parseFloat(datoCaracteristicaM[i][1]) + peso;
-            cantidadCara[i] = (cantidadCara[i] + cantidad);
+            cantidadCara[i] = (cantidadCara[i] + 1);
             bandera = false;
         }
     }
@@ -1260,14 +1101,14 @@ function pesoPorCaracteristica(peso, pesoEntrada, pesoSalida,cantidad) {
         datoPesoECara.push(pesoEntrada);
         datoPesoSCara.push(pesoSalida);
         datoCaracteristicaM.push([caracteristica, peso, posicionCara]);
-        cantidadCara.push(cantidad);
+        cantidadCara.push(1);
         posicionCara++;
     }
     return bandera;
 
 }
 
-function pesoPorEtapa(etapa, peso, pesoEntrada, pesoSalida,cantidad) {
+function pesoPorEtapa(etapa, peso, pesoEntrada, pesoSalida) {
     var bandera = true;
     for (var i = 0; i < datoEtapas.length; i++) {
         if (etapa == datoEtapas[i][0]) {
@@ -1275,7 +1116,7 @@ function pesoPorEtapa(etapa, peso, pesoEntrada, pesoSalida,cantidad) {
             datoPesoE[i] = parseFloat(datoPesoE[i]) + pesoEntrada;
             datoPesoS[i] = parseFloat(datoPesoS[i]) + pesoSalida;
             datoEtapas[i][1] = parseFloat(datoEtapas[i][1]) + peso;
-            cantidadEtapa[i] = (cantidadEtapa[i] + cantidad);
+            cantidadEtapa[i] = (cantidadEtapa[i] + 1);
             bandera = false;
         }
     }
@@ -1284,35 +1125,29 @@ function pesoPorEtapa(etapa, peso, pesoEntrada, pesoSalida,cantidad) {
         datoPesoE.push(pesoEntrada);
         datoPesoS.push(pesoSalida);
         datoEtapas.push([etapa, peso, posicionEtapas]);
-        cantidadEtapa.push(cantidad);
+        cantidadEtapa.push(1);
         posicionEtapas++;
     }
     return bandera;
 
 }
 
-function crearResumen(resumen, datosextras,sinboton) {
-    console.log("**********CREAR RESUMEN**********");
+function crearResumen(resumen, datosextras) {
     var lista = document.getElementById(resumen);
     var fila = document.createElement("TR");
-    console.log(lista);
     fila.setAttribute("id", ("n" + elementoCargado));
     for (var indices = 0; datosextras.length > indices; indices++) {
-        console.log("entro al for");
         var columna = document.createElement("TD");
         var textColumna = document.createTextNode(datosextras[indices]);
         columna.appendChild(textColumna);
         fila.appendChild(columna);
-        console.log(columna);
     }
-    if(!sinboton){
-        var btn = document.createElement("TD");
-        btn.innerHTML = '<button onclick="eliminar(' + elementoCargado + ',' + resumen + ')"> x </button>';
-        fila.appendChild(btn);
-        cantidad++;
-        elementoCargado++;
-    }
+    var btn = document.createElement("TD");
+    btn.innerHTML = '<button onclick="eliminar(' + elementoCargado + ',' + resumen + ')"> x </button>';
+    fila.appendChild(btn);
     lista.appendChild(fila);
+    cantidad++;
+    elementoCargado++;
 }
 
 function vaciarResumen() {
@@ -1328,8 +1163,8 @@ function eliminar(i, resumen) {
     var ultimo = document.getElementById("n" + i);
     var h = recorrerValor(i);
     resumen.removeChild(ultimo);
-    pesoT = acomodarPeso(pesoT, (parseFloat(datosEditables[i][3])), "restar");
-    pesoTotalG = acomodarPeso(pesoTotalG, (parseFloat(datosEditables[i][3])), "restar");
+    pesoT = acomodarPeso(pesoT, (parseFloat(datosEditables[i][1]) - parseFloat(datosEditables[i][2])), "restar");
+    pesoTotalG = acomodarPeso(pesoTotalG, (parseFloat(datosEditables[i][1]) - parseFloat(datosEditables[i][2])), "restar");
     pesoEntradaG = acomodarPeso(pesoEntradaG, parseFloat(datosEditables[i][1]), "restar");
     pesoSalidaG = acomodarPeso(pesoSalidaG, parseFloat(datosEditables[i][2]), "restar");
     datoPesoE[h[0]] = acomodarPeso(datoPesoE[h[0]], parseFloat(datosEditables[i][1]), "restar");
@@ -1340,17 +1175,10 @@ function eliminar(i, resumen) {
     datoEtapas[h[0]][1] = acomodarPeso(datoEtapas[h[0]][1], parseFloat(datosEditables[i][3]), "restar");
     datoPeso[h[0]] = acomodarPeso(datoPeso[h[0]], parseFloat(datosEditables[i][1]), "restar");
     datoPesoCanal[h[1]] = acomodarPeso(datoPesoCanal[h[1]], parseFloat(datosEditables[i][1]), "restar");
-    if(datosEditables[i][15] > 1){
-        cantidad =- datosEditables[i][13];
-    } else{ 
-        cantidad--;
-    }
-    cantidadCargas--;
-    document.getElementById("cantidadMostrado").innerHTML = cantidadCargas;
-    document.getElementById("pesoMostrado").innerHTML = Math.round(pesoT * 100) / 100;
     datosEditables[i] = null;
     cantidadCanal[h[1]]--;
     cantidadEtapa[h[0]]--;
+    cantidad--;
 }
 
 function recorrerValor(i) {
@@ -1587,24 +1415,72 @@ function recibirBolson() {
     }).darBolson();
 }
 
+function ayudador(apesoE,apesoS,apeso,array,compuesto,n,nc,datoEditable,fecha,no,nco){
+    console.log("*********ENTRO A AYUDADOR************");
+    console.log("compuesto");
+    console.log(compuesto);
+    console.log(datoEditable);
+    var pesoE,pesoS, peso;
+    var razon = compuesto[n];
+    var finalDato = datoEditableFinal.filter(elemento => elemento != null);
+    if(no != undefined){
+        razon = compuesto[n] + compuesto[no];
+    }
+    for(var i = 0; array.length > i; i++ ){
+        if(razon == array[i][0]){
+            if(datoEditable != undefined){
+                for(var j = 0; j < datoEditable.length; j++){
+                    pesoE = datoEditable[j][1];
+                    pesoS = datoEditable[j][2];
+                    if(pesoE > pesoS){
+                        peso = pesoE-pesoS;
+                    } else {
+                        peso = pesoS-pesoE;
+                    }
+                    for(var h = 0; h < datosCamion.length; h++){
+                        finalRazon = datosCamion[h][nc];
+                        if(nco != undefined){finalRazon = datosCamion[h][nc] + datosCamion[h][nco]}
+                        if(finalRazon == array[i][0]){
+                            datosCamion[h][19] += pesoE;
+                            datosCamion[h][20] += pesoS;
+                            datoComun[h][4] += peso;
+                            return datosCamion[h][21] += peso;
+                        } 
+                    }
+                }
+                
+            } else{
+                pesoE = scannerPeso(apesoE[i]);
+                pesoS = scannerPeso(apesoS[i]);
+                peso = scannerPeso(apeso[i]);
+            }
+            datoComun.push([finalDato[i][5], finalDato[i][4],
+            finalDato[i][3], peso, finalDato[i][8], finalDato[i][1], finalDato[i][2]
+            ]);
+            console.log("**********SALIO DEL AYUDADOR****************");
+            return datosCamion.push([camion.tipoCamion[1], usuario, fecha, idIngreso, coop, cv,
+            camion.fecha, camion.anio, camion.mes, camion.dia, camion.turno, camion.hora, camion.ingreso,
+            camion.patente, finalDato[5], finalDato[2], finalDato[1],
+            finalDato[7], finalDato[6], pesoE, pesoS, peso, scannerPeso(pesoTotalG),
+            camion.observacion, finalDato[4], finalDato[3], finalDato[0],
+            finalDato[0], finalDato[0], finalDato[0]
+            ]);
+        }
+    }
+}
+
 function limpiar() {
     document.getElementById("elementos").style.display = "none";
     document.getElementById("carga").style.display = "none";
     document.getElementById("mixta").style.display = "none";
-    document.getElementById("mostradorPeso").style.display = "none";    
-    document.getElementById("mostradorCantidad").style.display = "none";
-    document.getElementById("mostradorPesoTotal").style.display = "none";    
-    document.getElementById("tablaDeEstadistica").style.display = "none"; 
     document.getElementById("mixta").innerHTML = cargaMixta;
     document.getElementById("bolson").innerHTML = cargaDeContenido;
     document.getElementById("camion").innerHTML = cargaDeCamion;
     document.getElementById("elementos").innerHTML = cargaDeElementos;
-    document.getElementById("cantidadMostrado").innerHTML = 0;
-    document.getElementById("pesoMostrado").innerHTML = 0;
     caracteristica = "", material = "", nombre = "", metodoDeCarga = "";
     etapa = "", subetapa = "", canal = "", canalPorCv = "";
     metodoParaCargar = undefined; metodoParaMixto = undefined; camion = undefined;
-    elementoCargado = 0, idIngreso = 0, idBolson = 0; cantidadCargas = 0; banderaDeCargas = 0;
+    elementoCargado = 0, idIngreso = 0, idBolson = 0;
     pesoT = 0, pesoEntradaG = 0,pesoSalidaG = 0,cantidad = 0,pesoTotalG = 0;
     idVer = false,pesoVer = false,patenteVer = false,fechaVer = false,horaVer = false, banderaEgreso = false;
     posicionCanal = 0,posicionEtapas = 0; posicionMaterial = 0;
@@ -1615,8 +1491,7 @@ function limpiar() {
     datoPesoCara = [],datoPesoECara = [],datoPesoSCara = [],cantidadCara = [],posicionCara = [];cantidadCanal = [], cantidadEtapa = [];
     datosEditables = [],datoEditableFinal = [], listaDeID = [];
     datosCamion = [], datosBolson = [], datoComun = [];
-    datoBolsonVieja = [],datoCamionVieja = []; 
-
+    datoBolsonVieja = [],datoCamionVieja = [];
     mostrarPantalla("escritorio");
     colocarTodoEnNone();
 }
@@ -1670,7 +1545,6 @@ function conectarGoogle() {
         datoCOOP = e[3];
         datoMaterial = e[4];
         datoCaracteristica = e[5];
-        datoDelPesoPorMaterial = e[18];
         datoGeneral = e;
         document.getElementById("ingreso-principal").style.display = "inline";
         console.log(datoNombres);
@@ -1679,7 +1553,6 @@ function conectarGoogle() {
         console.log(datoCOOP);
         console.log(datoMaterial);
         console.log(datoCaracteristica);
-        console.log(datoDelPesoPorMaterial);
         console.log(datoGeneral);
     }).darBaseDeDato();
 }

@@ -1,0 +1,370 @@
+*{
+    margin: 0;
+    padding: 0;
+    }
+
+    body {
+    position: absolute;
+    background-image: url("http://carlitos.com.ar/DGREC/image/Fondo.jpg");
+    width: 100%;
+    }
+    
+    header {
+    background-color:rgba(67,122,67,0.9);
+    position: fixed;
+    margin-top: 0;
+    width: 100%;
+    box-shadow: 2px 2px 5px -4px;
+    z-index: 20;
+    }
+    
+    header img {
+        width:13%;
+        padding: 15px;
+        float: left;
+    }
+    .logoCV {
+        float: right;
+        width: 20%;
+    }  
+    
+    .botonIngreso{
+            width: 15%;
+            padding: 20px;
+     }
+        
+
+    /*/////////// SECCIÓN MODIFICADA /////////////*/
+
+    /*COMIENZO SECCIÓN DE CONTENEDORES*/
+    .contenedor {
+        position: relative;
+        display:block;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        top: 160px;
+        width: 80%;
+        height: 100%;
+        /*border-radius: 15px;
+        box-shadow: 0px 0px 1px 0px;*/  
+    }
+    .cajaDeInput{
+        display:inline-block; 
+        width: 100%;
+        /*background-color: rgba(255,255,255,0.4);*/
+        border: none;
+        /*box-shadow: 0px 0px 1px 0.5px;*/
+    }
+    
+    .cajaDeInput div{
+        float: left;
+         width: 50%;
+         margin: 0 auto;
+    }
+    
+    .cajaDeInput p{
+        float: left;
+        margin:0px; 
+        font-size: 20px;
+        margin-left: 20px;
+        margin-bottom:1px;
+        padding: 10px;
+    }
+
+    .cajaDeInput .bolson {
+        width: 52%;
+        float: left;
+      }
+
+    .cajaDeInput .resumenBolson {
+        width: 40%;
+        float: left;
+        margin-left: 5%;
+      }
+
+    .cajaDeInput .tipoDeDato {
+        position: relative;
+        background-color: rgba(133,133,133, 0.2);
+        margin-left: 10px;
+        margin-right: auto;
+        margin-top: -5px;
+        margin-bottom: 20px;
+        text-align: center;
+        float: left;
+        width: 100%;
+        height: 50%;
+        box-shadow: 0px 0px 1px 0px;
+        border-radius: 15px;
+        }
+        
+    .cajaDeInput .tipoDeDato h3 {
+        color: #fff;
+        font-size: 45px;
+        padding: 20px;
+        }
+        
+    .cajaDeInput .tipoDeDato button {
+        font-size: 2em;
+        width: 100%;
+        border: 0;
+        border-bottom: 8px;
+        border-bottom-color: #000000;
+        box-shadow: 0px 0px 1px 0px;
+        }
+        
+
+    /*FIN DE SECCION DE CONTENEDORES*/
+
+    /*COMIENZO DE INPUT*/
+
+    textarea {
+        font-size: 1.2em;
+        max-width: 90%;
+        width: 90%;
+        margin: 0 auto;
+        border: 0;
+        border-bottom: 8px;
+        border-bottom-color: #000000;
+        box-shadow: 0px 0px 1px 0px; 
+    }
+
+    .cargaDeDatos input, .CargaDeDatos select{
+        font-size: 2em;
+        width: 90%;
+        border: 0;
+        border-bottom: 8px;
+        border-bottom-color: #000000;
+        box-shadow: 0px 0px 1px 0px;
+    }
+
+    .cargaDeDatos .fecha {
+        font-size: 2em;
+        width: 95%;
+     }
+     
+     .cargaDeDatos .hora {
+        width: 100%;
+     }
+     .cargaDeDatos .patente{
+         width: 100%;
+     }
+     .cajaDeInput .rd {
+        width: 100%;
+     }
+
+     .cajaDeInput .rd p{
+         width: 30%;
+         font-size: 2em;
+     }
+
+     .cajaDeInput .rd input{
+         margin: auto 0;
+         text-align: center;
+     }
+     
+
+    /*FIN DE INPUT*/
+
+    /* COMIENZO DE BOTONES*/
+
+    button:enabled{
+        text-align: center;
+        color: #808080;
+        background-color: #fff000;
+        border: 0;
+        padding: 10px;
+        font-size: 16px; 
+        box-shadow: 0px 0px 1px 0px
+    }
+    button:disabled{
+        text-align: center;
+        color: #ffffff;
+        background-color: #808080;
+        border: 0;
+        padding: 10px;
+        font-size: 16px; 
+    }
+
+    .botonpeq {
+        width: 40%;
+    }
+    
+    .botongra {
+        float: none;
+        text-align: center;
+        width: 90%;
+    }
+
+    .efecto:disabled{
+        display: block;
+        margin: auto 0;
+        }
+
+    .efecto:enabled {
+        display: block;
+        margin: auto 0;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: box-shadow;
+        transition-property: box-shadow;
+        }
+        
+        .efecto:hover:enabled,
+        .efecto:focus:enabled,
+        .efecto:active {
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+        color: #4F4F4F
+        }
+
+    /*FIN DE BOTONES*/
+
+
+    .ingreso {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    top: 160px;
+    width: 45%;
+    height: 50%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 1px 0px;
+    }
+    
+    .ingreso h3 {
+    color: #000000;
+    font-size: 18px;
+    }
+    
+   
+    .ingreso input {
+    font-size: 2em;
+    width: 100%;
+    border: 0;
+    border-bottom: 8px;
+    border-bottom-color: #000000;
+    box-shadow: 0px 0px 1px 0px;
+    }
+    
+    
+    footer {
+    position: relative;   
+    }
+    .pie {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    background-color: #000000;
+    text-align: center;
+    right: 0px;
+    bottom: -550px;
+    }
+    footer p {
+    font-size: 24px;
+    color: #ffffff
+    }
+    
+    h1{
+        color: #666666;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 2em;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;  
+    }
+    
+    .cargaDeDatos {
+        position:relative; 
+        padding: 20px; 
+        width:100%;
+    }
+    
+    .cargaDeDatos h3{
+        margin-bottom:0px;
+    }
+    
+    .tituloDeCargas {
+        width:90%;
+        margin: 0 auto;
+    }
+    
+    .tituloDeCargas h1 {
+        padding:10px; 
+        color: #000; 
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    input:disabled {
+      background-color:#848484;
+    }
+    
+   
+    #informacion li {
+      display: inline;
+      padding: 5px;
+      color: black;
+      font-size: 2em;
+      
+    }
+    
+    #informacion {
+    
+      text-align: center;
+      
+      }
+    #bolson, #egreso, #mixtoRa, #mixtoGg, #mixtoPv{
+        display: none;
+    }
+    
+    #pesoRaSalida, #pesoGgSalida, #pesoPvSalida{
+      display: none;
+    }
+    
+    #etapaDiv, #subetapaDiv, #materialDiv, #caracteristicaDiv{
+      display: none;
+    }
+    
+    #tablapesomaterial, #tablabolson, #escritorio, #elementos, #carga, #ingreso-principal, #mostradorPeso, #mostradorCantidad{
+      display: none;
+    }
+    .resumenColor{
+      width: 50%;
+    }
+    
+    .divValidacion {
+      display: none;
+      width: 100%;
+    }
+    
+    .resumen {
+      background-color: yellow;
+      width: 100%;
+    }
+  .botonAtras{
+    position: relative;
+    top: 160px;
+    float: left;
+    padding: 20px;
+    
+  }
+  .mostrador{
+    width: 100%;
+  }
+
+  .mostrador div{
+    background-color: yellow;
+    position:relative;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+
+td, th {
+border: 2px solid black;
+}

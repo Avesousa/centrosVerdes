@@ -1,0 +1,298 @@
+html{
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    /*background-image: url("http://carlitos.com.ar/DGREC/image/Fondo.jpg");*/
+    background-color: #F2F2F2;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*/////ELEMENTOS MODIFICADOS GLOBAL//////*/
+h1{
+    color: rgb(67,122,67);
+    font-size: 28px;
+    margin: 0px;
+}
+
+
+/*////////CABECERA////////////*/
+header {
+    background-color:rgba(67,122,67,0.9);
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    margin-top: 0;
+    width: 100%;
+    box-shadow: 2px 2px 5px -4px;
+    z-index: 20;
+}
+
+header img {
+    width:13%;
+    padding: 15px;
+    float: left;
+}
+.logoCV {
+    float: right;
+    width: 20%;
+}
+
+/*/////////CONTENEDOR//////////////*/
+.contenedor{
+    margin-top: 15%; 
+    margin-bottom: 40px;
+}
+
+.caja{
+    padding: 5%;
+}
+.boton {
+    width: 80%;
+    background: #FFBF00;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.botonAtras button{
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 5%;
+    position: fixed;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+}
+
+
+
+/*//////////DATOS DE INGRESO//////////////*/
+.contenedorIngreso{
+    background-color: white;
+}
+
+.ingreso{
+    font-family: Arial, Helvetica, sans-serif;
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 0px 0px 1px 0px;
+    text-align: center;
+    padding: 5px;
+}
+
+
+.ingreso h3{
+    margin-top: 10px;
+}
+
+.ingreso input{
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+}
+
+.ingreso button {
+    width: 80%;
+    background: #FFBF00;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*/////////ESCRITORIO/////////*/
+#divEgreso,
+#divIngreso {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F2F5A9;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 2px 2px 5px -4px;
+    font-size: 32px;
+
+}
+
+.tituloEscritorio{
+    font-size: 1.5em;
+    padding: 5px;
+    background-color: #FFBF00;
+    color: white;
+}
+
+#divEgreso{
+    margin-top: 4%;
+}
+
+.botonIngreso,
+.botonIngreso{
+    width: 15%;
+    padding: 15px;
+}
+
+#escritorio .caja{
+    margin-bottom: 100px;
+}
+
+/*/////CARGA/////////*/
+#camion {
+    text-align: center;
+}
+
+.carga{
+    margin-top: 10%;
+}
+
+.cargaTitulo{
+    font-size: 1em;
+}
+
+.contenedorCarga{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F2F5A9;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 2px 2px 5px -4px;
+    font-size: 32px;
+}
+
+.botonCargar{
+    width: 50%;
+}
+
+.contenidoCarga{
+    padding: 2%;
+    width: 100%;
+}
+
+.divValidacion{
+    width: 100%;
+    display: none;
+}
+
+.tituloInput{
+    font-size: 24px;
+    margin: 0;
+}
+
+.fecha,
+.hora,
+.patente {
+    font-size: 1em;
+    width: 50%;
+}
+.observacion{
+    height: 1em;
+    width: 50%;
+    font-size: 24px;
+    max-width: 50%;
+    min-width: 50%;
+    min-height: 1em;
+    max-height: 200px;
+}
+
+.mostrador{
+    width: 100%;
+    color:white;
+}
+
+
+/*//////FOOTER/////////*/
+footer{
+    position: fixed;
+    background-color: black;
+    height: 40px;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    font-size: 20px; 
+    padding: 20px;
+}
+
+#ingreso-principal,
+#escritorio, /*Escritorio de todas las cargas*/
+/*#carga, /*Carga de los elementos*/
+#elementos, /*Elementos para cargar, cuando tiene varios metodos*/
+/*#camion,*/
+#bolson /*Carga de bolson*/
+/*#informacion*/ /*Información de cantidad de cargas*/
+/*#mostradorPeso, *//*///MOSTRADOR DEL PESO EN CARGA///*/
+/*#mostradorCantidad*//*///MOSTRADOR DE CANTIDAD EN CARGA///*/{
+    display: none;
+}
+
+
+@media screen and (max-width: 700px){
+    .ingreso{
+        width: 80%;
+    }
+
+    .contenedor{
+        margin-top: 13%;
+    }
+
+    .botonIngreso,
+    .botonIngreso{
+    width: 30%;
+    padding: 20px;
+}
+}
+
+@media screen and (max-width: 500px){
+    .contenedor{
+        margin-top: 20%;
+    }
+
+    #divEgreso .caja{
+        padding: 5%;
+    }
+
+    .caja{
+        padding: 10%;
+    }
+
+    .fecha,
+    .hora,
+    .patente {
+        font-size: 18px;
+        width: 85%;
+    }
+
+    .observacion{
+        height: 18px;
+        width: 85%;
+        font-size: 24px;
+        max-width: 85%;
+        min-width: 85%;
+        min-height: 18px;
+        max-height: 50px;
+    }
+
+    .botonAtras button{
+        position: static;
+        width: 100%;
+        background-color: red;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        padding: 5px;
+        border: none;
+        border-radius: 0px;
+    }
+    
+    .contenedorCargaMovil{
+        margin-top: 12%;;
+    }
+}
