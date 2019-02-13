@@ -1,4 +1,691 @@
+<!DOCTYPE html>
+<html>
+  <head>  
+    <base target="_top">
+    <title>SED - DIRECCIÓN GENERAL DE RECICLAJE</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <!--UNICAMENTE PARA GOOGLE-->
+    <style>
+    html{
+    min-height: 100%;
+    position: relative;
+}
 
+body {
+    /*background-image: url("http://carlitos.com.ar/DGREC/image/Fondo.jpg");*/
+    background-color: #F2F2F2;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*/////ELEMENTOS MODIFICADOS GLOBAL//////*/
+h1{
+    color: rgb(67,122,67);
+    font-size: 28px;
+    margin: 0px;
+}
+
+
+/*////////CABECERA////////////*/
+header {
+    background-color:rgba(67,122,67,0.9);
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 2px 2px 5px -4px;
+    z-index: 20;
+}
+
+header img {
+    width:13%;
+    padding: 15px;
+    float: left;
+}
+.logoCV {
+    float: right;
+    width: 20%;
+}
+
+/*/////////CONTENEDOR//////////////*/
+.contenedor{
+    margin-top: 10%; 
+    margin-bottom: 40px;
+}
+
+.caja{
+    padding: 1% 5% 1% 5%;
+}
+.boton {
+    width: 80%;
+    background: #FFBF00;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.botonAtras button{
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 5%;
+    position: fixed;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+}
+
+
+
+/*//////////DATOS DE INGRESO//////////////*/
+.contenedorIngreso{
+    background-color: white;
+}
+
+.ingreso{
+    font-family: Arial, Helvetica, sans-serif;
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 0px 0px 1px 0px;
+    text-align: center;
+    padding: 5px;
+}
+
+
+.ingreso h3{
+    margin-top: 10px;
+}
+
+.ingreso input{
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+}
+
+.ingreso button {
+    width: 80%;
+    background: #FFBF00;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*/////////ESCRITORIO/////////*/
+#divEgreso,
+#divIngreso,
+#imagenMixta {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F2F5A9;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 2px 2px 5px -4px;
+    font-size: 32px;
+
+}
+
+.tituloEscritorio{
+    font-size: 1.5em;
+    padding: 5px;
+    background-color: #FFBF00;
+    color: white;
+}
+
+#divEgreso{
+    margin-top: 4%;
+}
+
+.botonIngreso,
+.botonIngreso{
+    width: 15%;
+    padding: 15px;
+}
+
+#escritorio .caja{
+    margin-bottom: 100px;
+}
+
+/*/////CARGA/////////*/
+#camion {
+    text-align: center;
+}
+
+.carga{
+    margin-top: 10%;
+}
+
+.cargaTitulo{
+    font-size: 1em;
+}
+
+.contenedorCarga{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F2F5A9;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 2px 2px 5px -4px;
+    font-size: 32px;
+}
+
+.botonCargar{
+    width: 50%;
+}
+
+.contenidoCarga{
+    padding: 2%;
+    width: 100%;
+    overflow: auto;
+}
+
+.divValidacion{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    display: none;
+    border-radius: 15px;
+}
+
+.divValidacion p{
+    color: #fff;
+    font-size: 12px;
+    padding-left: 20px;
+
+}
+
+.tituloInput{
+    font-size: 24px;
+    margin: 0;
+}
+
+.inputCamion{
+    width: 50%;
+}
+
+.inputCamion div{
+    float: left;
+    width: 80%;
+}
+
+.fecha,
+.hora{
+    width: 48%;
+    font-size: 12px;
+}
+.patente {
+    font-size: 12px;
+    width: 50%;
+}
+
+.observacion{
+    height: 1em;
+    width: 50%;
+    font-size: 12px;
+    max-width: 50%;
+    min-width: 50%;
+    min-height: 1em;
+    max-height: 200px;
+}
+
+#bolson .contenidoCarga{
+    padding-top: 0px;
+}
+
+.mostrador{
+    width: 100%;
+    color:white;
+}
+
+.cajaCarga{
+    padding-top: 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+}
+
+.contador{
+    width: 46%;
+    margin-left: 2%;
+    margin-top: 2px;
+    float: left;
+    background-color: #FACC2E;
+}
+
+.contador p {
+    font-size: 0.6em;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    
+}
+
+.contador #cantidadMostrado,
+.contador #pesoMostrado{
+    font-family: monospace;
+    font-size: 1.2em;
+}
+
+.seccionBolson{
+    width: 48%;
+    float: left;
+    padding: 1%;
+    margin: 0;
+    overflow: auto;
+}
+.seccionBolsonSelect{
+    margin:0;
+    width: 96%;
+    padding: 5px;
+    padding-top: 0.2%;
+}
+
+.seccionBolsonSelect select{
+    width: 50%;
+    float: left;
+    font-size: 0.8em;
+    text-align: center;
+    background-color: #FACC2E;
+}
+
+
+.seccionBolson input{
+    margin: 0;
+    width: 98%;
+    font-size: 1em;
+}
+
+.seccionBolson table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.seccionBolson tr{
+    font-size: 0.6em;
+    padding: 1%;
+
+}
+
+.seccionBolson td{
+    border: 1px solid white;
+}
+
+
+.seccionEstadistica{
+    width: 100%;
+    padding-left: 10%;
+    float: right;
+    font-size: 12px;
+}
+
+.seccionEstadistica td{
+    border: 1px solid black;
+}
+/*
+.seccionEstadistica tr{
+    font-size: 0.8em;
+    padding: 1%;
+    width: 100%;
+
+}
+
+.seccionEstadistica td{
+    border: 1px solid white;
+    width: 33.3%;
+}*/
+
+/*//////FOOTER/////////*/
+footer{
+    position: fixed;
+    background-color: black;
+    height: 40px;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    font-size: 20px; 
+    padding: 20px;
+}
+
+#ingreso-principal,
+#escritorio, /*Escritorio de todas las cargas*/
+#carga, /*Carga de los elementos*/
+#elementos, /*Elementos para cargar, cuando tiene varios metodos*/
+#camion,
+#bolson, /*Carga de bolson*/
+#informacion, /*Información de cantidad de cargas*/
+#mostradorPeso, /*///MOSTRADOR DEL PESO EN CARGA///*/
+#mostradorCantidad,/*///MOSTRADOR DE CANTIDAD EN CARGA///*/
+#mixta, /*///////Carga de mixto//////////*/
+#botonContinuar /*///////BOTON DE CONTINUAR MIXTO//////*/
+{
+    display: none;
+}
+
+#etapaDiv, 
+#subetapaDiv, 
+#materialDiv, 
+#caracteristicaDiv,
+#tablabolson,
+#tablapesomaterial{
+    display: none;
+  }
+@media screen and (max-width: 1200px){
+    .seccionBolson tr{
+        font-size: 0.5em;
+    }
+
+    .contenedor{
+        margin-top: 12%;
+    }
+}
+
+@media screen and (max-width: 1050px){
+    .cajaCarga{
+        padding: 3%;
+    }
+
+    .seccionBolson{
+        width: 48%;
+    }
+    
+    .seccionBolson tr{
+        font-size: 0.35em;
+    }
+
+}
+@media screen and (max-width: 700px){
+    .ingreso{
+        width: 80%;
+    }
+
+    .divValidacion{
+        font-size: 0.5em;
+    }
+
+    .contenedor{
+        margin-top: 13%;
+    }
+
+    .botonIngreso,
+    .botonIngreso{
+    width: 30%;
+    padding: 10px;
+    }
+    
+    .seccionBolsonSelect select{
+        width: 48%;
+    }
+
+    .seccionBolson tr{
+        font-size: 0.6em;
+    }
+
+    .seccionBolson{
+        width: 100%;
+    }
+
+    .divValidacion{
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 500px){
+    .contenedor{
+        margin-top: 20%;
+    }
+
+    #divEgreso .caja{
+        padding: 5%;
+    }
+
+    .caja{
+        padding: 10%;
+    }
+
+    .cajaCarga{
+        padding-top: 2%;
+    }
+
+    .fecha,
+    .hora,
+    .patente {
+        font-size: 12px;
+        width: 85%;
+    }
+
+    .observacion{
+        height: 18px;
+        width: 85%;
+        font-size: 24px;
+        max-width: 85%;
+        min-width: 85%;
+        min-height: 18px;
+        max-height: 50px;
+    }
+
+    .botonAtras button{
+        position: static;
+        width: 100%;
+        background-color: red;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        padding: 5px;
+        border: none;
+        border-radius: 0px;
+    }
+    
+    .contenedorCargaMovil{
+        margin-top: 12%;;
+    }
+
+    .contador #cantidadMostrado,
+    .contador #pesoMostrado{
+    font-family: monospace;
+    font-size: 0.8em;
+    }
+
+    .seccionEstadistica tr{
+        font-size: 1em;
+        padding: 1%;
+        width: 100%;
+    
+    }
+    
+    .seccionEstadistica td{
+        border: 1px solid white;
+        width: 33.3%;
+    }
+
+    .tituloEscritorio{
+        font-size: 18px;
+    }
+
+    .tituloInput{
+        font-size: 15px;
+    }
+
+    .inputCamion{
+        width: 85%;
+        margin: 0px 20px 0px 20px;
+    }
+
+    .inputCamion div{
+        float: left;
+        width: 100%;
+    }
+}
+
+
+    </style>
+
+    <!--UNICAMENTE PARA GOOGLE-->
+  </head>
+  <body>
+    <header>
+      <img src="http://carlitos.com.ar/DGREC/image/SED.png" alt="logo">
+      <img class = "logoCV" src="http://carlitos.com.ar/DGREC/image/ciudadverdeGocad.png" alt="Logo de la dirección">
+    </header>
+<!-- Parte para poder logger -->
+    <div id="ingreso-principal" class ="ingreso contenedor contenedorIngreso">
+      <div class="caja">
+          <h1>Ingreso SED</h1><br>
+          <hr>
+          <div id ="aviso" class="Validador">
+          </div>
+          <h3>Usuario</h3>
+          <input type="text" name="usuario" id="usuario" placeholder="Tu nombre de usuario"><br>
+          <h3>Contraseña</h3>
+          <input type="password" name="clave" id="clave" placeholder="Tu contraseña"><br>
+          <BR>
+          <button name="btn1" class="boton" onClick="user = new Usuario();" id="botonIngresar">Entrar</button>
+      </div>
+  </div>
+  <div id="escritorio" class="contenedor">
+    <div>
+      <div class="caja">
+        <div id="divIngreso">
+          <h1 class="tituloEscritorio">Ingreso</h1>
+        </div>
+        <div id="divEgreso">
+          <h1 class="tituloEscritorio">Egreso</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="carga" class="contenedor carga contenedorCargaMovil">
+      <div class="botonAtras">
+          <button onclick="limpiar();"> ↺ </button>
+      </div>
+      <div>
+        <div class="caja cajaCarga">
+            <div id="camion" class="contenedorCarga">
+                        <h1 class="tituloEscritorio cargaTitulo">Carga de datos: CAMIÓN</h1>
+                        <div class="contenidoCarga">
+                            <div id = "validadorCamion" class = "divValidacion"></div>
+                            <div class="inputCamion">
+                              <div>
+                                  <h3 class="tituloInput">Fecha</h3>
+                                  <input type="date"  name="fecha" id="fecha" class = "fecha" onblur ="user.verificarFecha();" autofocus><br>
+                              </div>
+                              <div>
+                                  <h3 class="tituloInput">Hora</h3>
+                                  <input type="time" name="hora" id="hora" value="00:00" class="hora" onblur ="user.verificarHora();">
+                              </div>
+                              <div>
+                                <h3 class="tituloInput">Patente</h3>
+                                <input type="text" name="patente" id="patente" class="patente" placeholder="AA123AA" maxlength = "7" title="Deberás ingresar valores de patente ejemplo: AA123AA ó AAA123" onblur ="user.verificarPatente();"><br>
+                              </div>
+                            </div>
+                            <h3 class="tituloInput">Observación</h3>
+                            <textarea type="text" class="observacion" name="observacion" id="observacion"></textarea><br>
+                            <input type="hidden"  name="turno" id="turno" value="2">
+                            <input type="hidden" name="ingreso" id="ingreso" value="Ingreso">
+                            <button id="botonSeguir" class="botonCargar boton" name="btn1" onClick ="user.abrirMetodos()" disabled>Siguiente</button>
+                          </div>
+            </div>
+          <div id="bolson" class="contenedorCarga">
+            <h1 class="tituloEscritorio cargaTitulo">Carga de datos:</h1>
+            <div class="mostrador" id="mostrador">
+                <div id="mostradorCantidad" class="contador">
+                    <p>Cantidad:</p>
+                    <p id="cantidadMostrado">0</p>
+                </div>
+                <div id="mostradorPeso" class="contador">
+                    <p>Peso total:</p>
+                    <p id="pesoMostrado">0,00</p>
+                </div><br><br>
+            </div>
+            <div class="contenidoCarga">
+              <div id ="validador" class = "divValidacion"></div>
+              <div class="seccionBolsonSelect">
+                <div id="etapaDiv">
+                  <input id="etapa" type="hidden" name="etapa" onblur="gestionarSubEtapa()"><br>
+                </div>
+                <div id="subetapaDiv">
+                    <input id="subetapa" type="hidden" name="subEtapa"><br>
+                </div>  
+                <div id="materialDiv">
+                  <input id="material" type="hidden" name="material">
+                </div>
+                <div id="caracteristicaDiv">
+                  <input type="hidden"  id="caracteristica" name="caracteristica">
+                </div>
+              </div>
+              <div class="seccionBolson">
+                <!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->
+                <input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">
+                <input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">
+                <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de bolsón" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >
+                <input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <button id="botonCargar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.cargar();" disabled>Cargar</button>
+              </div>
+              <div class="seccionBolson">
+                <table id="tablaResumen">
+                </table>
+                    <button disabled id="botonEnviar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.enviar()">Enviar</button>
+                    <button disabled id="botonContinuar" class="boton botonCargar" name="btn1" onClick="metodoParaMixto.continuar()">Continuar</button>
+              </div>
+            </div>
+          </div>
+          <div id="mixta" class="contenedorCarga">
+            <h1 class="tituloEscritorio cargaTitulo">Seleccione canal de Recolección</h1>
+            <div id="seccionEstadistica" class="seccionEstadistica">
+              <div class="cargoMixto">
+                <table>
+                  <tr>
+                    <td rowspan="2">
+                      CANAL
+                    </td>
+                    <td>
+                      CANTIDAD
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> PESO</td>
+                  </tr>
+                </table>
+                <div id="mostradorPesoTotal">
+                    <p>Peso total:</p>
+                    <p id="pesoTotalMostrado">0</p>
+                </div>
+              </div>
+            </div>
+            <div class="contenidoCarga">
+              <div id="imagenMixto" class="cajaMixta">
+              </div>
+            </div>
+            <button id="botonEnviarMixto" disabled class="efecto botongra" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div id="elementos" class="contenedor">
+      <div class="contenedor">
+          <div class="cajaDeInput">
+            <div class="tipoDeDato" id="divIngresoE">
+              <h3>Ingreso</h3>
+            </div>
+          </div>
+        </div>
+              
+  </div>
+  <footer>
+    LLAMA A MIGUEL Y QUE EL LO ARREGLE 
+  </footer>
+  <!--UNICAMENTE PARA GOOGLE-->
+  <script>
+      
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1679,3 +2366,7 @@ conectarGoogle();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+  </script>
+  <!--UNICAMENTE PARA GOOGLE-->
+</body>
+</html>

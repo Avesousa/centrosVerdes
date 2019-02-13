@@ -1,4 +1,4 @@
-html{
+    html{
     min-height: 100%;
     position: relative;
 }
@@ -25,7 +25,7 @@ header {
     margin: 0;
     padding: 0;
     position: fixed;
-    margin-top: 0;
+    top: 0;
     width: 100%;
     box-shadow: 2px 2px 5px -4px;
     z-index: 20;
@@ -43,12 +43,12 @@ header img {
 
 /*/////////CONTENEDOR//////////////*/
 .contenedor{
-    margin-top: 15%; 
+    margin-top: 10%; 
     margin-bottom: 40px;
 }
 
 .caja{
-    padding: 5%;
+    padding: 1% 5% 1% 5%;
 }
 .boton {
     width: 80%;
@@ -180,11 +180,19 @@ header img {
 }
 
 .divValidacion{
-    width: 94%;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
     color: white;
-    padding: 1%;
-    margin: 0;
     display: none;
+    border-radius: 15px;
+}
+
+.divValidacion p{
+    color: #fff;
+    font-size: 12px;
+    padding-left: 20px;
+
 }
 
 .tituloInput{
@@ -192,17 +200,29 @@ header img {
     margin: 0;
 }
 
+.inputCamion{
+    width: 50%;
+}
+
+.inputCamion div{
+    float: left;
+    width: 80%;
+}
+
 .fecha,
-.hora,
+.hora{
+    width: 48%;
+    font-size: 12px;
+}
 .patente {
-    font-size: 1em;
+    font-size: 12px;
     width: 50%;
 }
 
 .observacion{
     height: 1em;
     width: 50%;
-    font-size: 24px;
+    font-size: 12px;
     max-width: 50%;
     min-width: 50%;
     min-height: 1em;
@@ -227,7 +247,8 @@ header img {
 
 .contador{
     width: 46%;
-    margin: 2%;
+    margin-left: 2%;
+    margin-top: 2px;
     float: left;
     background-color: #FACC2E;
 }
@@ -269,8 +290,13 @@ header img {
 
 .seccionBolson input{
     margin: 0;
-    width: 90%;
+    width: 98%;
     font-size: 1em;
+}
+
+.seccionBolson table{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .seccionBolson tr{
@@ -321,14 +347,14 @@ footer{
 
 #ingreso-principal,
 #escritorio, /*Escritorio de todas las cargas*/
-/*#carga, /*Carga de los elementos*/
+#carga, /*Carga de los elementos*/
 #elementos, /*Elementos para cargar, cuando tiene varios metodos*/
 #camion,
 #bolson, /*Carga de bolson*/
 #informacion, /*Información de cantidad de cargas*/
 #mostradorPeso, /*///MOSTRADOR DEL PESO EN CARGA///*/
 #mostradorCantidad,/*///MOSTRADOR DE CANTIDAD EN CARGA///*/
-/*#mixta, *//*///////Carga de mixto//////////*/
+#mixta, /*///////Carga de mixto//////////*/
 #botonContinuar /*///////BOTON DE CONTINUAR MIXTO//////*/
 {
     display: none;
@@ -346,11 +372,15 @@ footer{
     .seccionBolson tr{
         font-size: 0.5em;
     }
+
+    .contenedor{
+        margin-top: 12%;
+    }
 }
 
 @media screen and (max-width: 1050px){
     .cajaCarga{
-        padding-top: 3%;
+        padding: 3%;
     }
 
     .seccionBolson{
@@ -390,7 +420,11 @@ footer{
     }
 
     .seccionBolson{
-        width: 97%;
+        width: 100%;
+    }
+
+    .divValidacion{
+        width: 100%;
     }
     
 }
@@ -415,7 +449,7 @@ footer{
     .fecha,
     .hora,
     .patente {
-        font-size: 18px;
+        font-size: 12px;
         width: 85%;
     }
 
@@ -462,5 +496,22 @@ footer{
         border: 1px solid white;
         width: 33.3%;
     }
-}
 
+    .tituloEscritorio{
+        font-size: 18px;
+    }
+
+    .tituloInput{
+        font-size: 15px;
+    }
+
+    .inputCamion{
+        width: 85%;
+        margin: 0px 20px 0px 20px;
+    }
+
+    .inputCamion div{
+        float: left;
+        width: 100%;
+    }
+}

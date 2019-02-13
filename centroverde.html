@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="estilos.css">
     <meta name="viewport" content="initial-scale=1, width=device-width">
   </head>
-  <body style = "position: absolute;background-color: #f9f9f9;width: 100%;">
+  <body>
     <header>
       <img src="http://carlitos.com.ar/DGREC/image/SED.png" alt="logo">
       <img class = "logoCV" src="http://carlitos.com.ar/DGREC/image/ciudadverdeGocad.png" alt="Logo de la dirección">
-  </header>
+    </header>
 <!-- Parte para poder logger -->
     <div id="ingreso-principal" class ="ingreso contenedor contenedorIngreso">
       <div class="caja">
@@ -48,12 +48,20 @@
             <h1 class="tituloEscritorio cargaTitulo">Carga de datos: CAMIÓN</h1>
             <div class="contenidoCarga">
                 <div id = "validadorCamion" class = "divValidacion"></div>
-                <h3 class="tituloInput">Fecha</h3>
-                <input type="date"  name="fecha" id="fecha" class = "fecha" onblur ="user.verificarFecha();" autofocus><br>
-                <h3 class="tituloInput">Hora</h3>
-                <input type="time" name="hora" id="hora" value="00:00" class="hora" onblur ="user.verificarHora();">
-                <h3 class="tituloInput">Patente</h3>
-                <input type="text" name="patente" id="patente" class="patente" placeholder="AA123AA" maxlength = "7" title="Deberás ingresar valores de patente ejemplo: AA123AA ó AAA123" onblur ="user.verificarPatente();"><br>
+                <div class="inputCamion">
+                  <div>
+                      <h3 class="tituloInput">Fecha</h3>
+                      <input type="date"  name="fecha" id="fecha" class = "fecha" onblur ="user.verificarFecha();" autofocus><br>
+                  </div>
+                  <div>
+                      <h3 class="tituloInput">Hora</h3>
+                      <input type="time" name="hora" id="hora" value="00:00" class="hora" onblur ="user.verificarHora();">
+                  </div>
+                  <div>
+                    <h3 class="tituloInput">Patente</h3>
+                    <input type="text" name="patente" id="patente" class="patente" placeholder="AA123AA" maxlength = "7" title="Deberás ingresar valores de patente ejemplo: AA123AA ó AAA123" onblur ="user.verificarPatente();"><br>
+                  </div>
+                </div>
                 <h3 class="tituloInput">Observación</h3>
                 <textarea type="text" class="observacion" name="observacion" id="observacion"></textarea><br>
                 <input type="hidden"  name="turno" id="turno" value="2">
@@ -100,30 +108,10 @@
                 <button id="botonCargar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.cargar();" disabled>Cargar</button>
               </div>
               <div class="seccionBolson">
-                  <table id="resumen">
-                      <tr id="tablabolson">
-                        <td>ID</td>
-                        <td>Nombre</td>
-                        <td>Peso</td>
-                      </tr>
-                      <tr>
-                          <td>89754569</td>
-                          <td>AVELINO JOSE FIGUEIRA FLORES</td>
-                          <td>5000.69</td>
-                      </tr>
-                      <tr>
-                          <td>ID</td>
-                          <td>Nombre</td>
-                          <td>Peso</td>
-                        </tr>
-                      <tr id="tablapesomaterial">
-                        <td>Material</td>
-                        <td>Caracteristica</td>
-                        <td>Peso</td>
-                      </tr>
-                    </table> 
-                    <button disabled id="botonEnviar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.enviar()">Enviar</button>
-                    <button disabled id="botonContinuar" class="boton botonCargar" name="btn1" onClick="metodoParaMixto.continuar()">Continuar</button>
+                  <table id="tablaResumen">
+                  </table>
+                      <button disabled id="botonEnviar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.enviar()">Enviar</button>
+                      <button disabled id="botonContinuar" class="boton botonCargar" name="btn1" onClick="metodoParaMixto.continuar()">Continuar</button>
               </div>
             </div>
           </div>
