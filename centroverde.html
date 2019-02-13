@@ -74,7 +74,7 @@
                 </div><br><br>
             </div>
             <div class="contenidoCarga">
-              <div id ="validador" class = "divValidacion">¡HAZ INGRESADO UN VALOR VALIDO!</div>
+              <div id ="validador" class = "divValidacion"></div>
               <div class="seccionBolsonSelect">
                 <div id="etapaDiv">
                   <input id="etapa" type="hidden" name="etapa" onblur="gestionarSubEtapa()"><br>
@@ -127,6 +127,35 @@
               </div>
             </div>
           </div>
+          <div id="mixta" class="contenedorCarga">
+            <h1 class="tituloEscritorio cargaTitulo">Seleccione canal de Recolección</h1>
+            <div id="seccionEstadistica" class="seccionEstadistica">
+              <div class="cargoMixto">
+                <table>
+                  <tr>
+                    <td rowspan="2">
+                      CANAL
+                    </td>
+                    <td>
+                      CANTIDAD
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> PESO</td>
+                  </tr>
+                </table>
+                <div id="mostradorPesoTotal">
+                    <p>Peso total:</p>
+                    <p id="pesoTotalMostrado">0</p>
+                </div>
+              </div>
+            </div>
+            <div class="contenidoCarga">
+              <div id="imagenMixto" class="cajaMixta">
+              </div>
+            </div>
+            <button id="botonEnviarMixto" disabled class="efecto botongra" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>
+          </div>
         </div>
       </div>
   </div>
@@ -157,8 +186,7 @@
         div.appendChild(link);
       }
     }
-    crearMenu("divIngreso",5);
-    crearMenu("divEgreso",2);
+    crearMenu("imagenMixto",4);
   </script>
 </body>
 

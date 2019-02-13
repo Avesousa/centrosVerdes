@@ -1,4 +1,5 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -447,7 +448,6 @@ class Metodo {
         this.material = document.getElementById("materialDiv");
         this.tablaPesoTotal = document.getElementById("mostradorPesoTotal");
         this.pesoMostrar = document.getElementById("pesoTotalMostrado");
-        this.tablaEstadistica = document.getElementById("tablaDeEstadistica");
         this.peso;
         this.etapa = document.getElementById('etapa');
         this.subetapa = document.getElementById('subetapa');
@@ -461,10 +461,8 @@ class Metodo {
         this.camion.style.display = "none";
         this.elemento.style.display = "none";
         this.cantidadBandera = 1;
-        console.log(this.tablaEstadistica);
         console.log(this.tablaPesoTotal);
         console.log(this.pesoMostrar);
-        this.tablaEstadistica.style.display = "none";
         this.tablaPesoTotal.style.display = "none";
         this.pesoMostrar.style.display = "none";
         cargarListaDeID()
@@ -590,7 +588,6 @@ class mixta extends Metodo {
     continuar() {
         this.mixta.style.display = "inline";
         this.carga.style.display = "none";
-        this.tablaEstadistica.style.display = "inline";
         this.tablaPesoTotal.style.display = "inline";
         this.pesoMostrar.style.display = "inline";
         var link = document.getElementById(canal);
@@ -601,7 +598,7 @@ class mixta extends Metodo {
         botonParaClickear = "botonEnviar";
         var estadistica = [canal,cantidadCargas,pesoT];
         console.log(estadistica);
-        crearResumen("tablaDeEstadistica",estadistica,true);
+        this.crearTabla(estadistica);
         this.pesoMostrar.innerHTML = pesoTotalG;
         pesoT = 0;
         cantidadCargas = 0;
@@ -612,6 +609,33 @@ class mixta extends Metodo {
 
     mostrarCanales() {
         metodoParaMixto.agregarMenu(canales);
+    }
+
+    crearTabla(datos){
+        console.log("**********CREAR TABLA*********");
+        var divPrincipal = document.getElementById("seccionEstadistica");
+        var divCargas = document.createElement("DIV");
+        divCargas.setAttribute("class","cargoMixto");
+        var tabla = document.createElement("TABLE");
+        var filaPrincipal = document.createElement("TR");
+        var colCanal = document.createElement("TD");
+        colCanal.setAttribute("rowspan","2");
+        colCanal.innerText = datos[0];
+        var colCantidad = document.createElement("TD");
+        colCantidad.innerHTML = datos[1];
+        var filaSecundaria = document.createElement("TR");
+        var colPeso = document.createElement("TD");
+        colPeso.innerHTML= datos[2];
+        console.log("comienzo a conectar datos");
+        filaSecundaria.appendChild(colPeso);
+        tabla.appendChild(filaSecundaria);
+        filaPrincipal.appendChild(colCantidad);
+        filaPrincipal.appendChild(colCanal);
+        tabla.appendChild(filaPrincipal);
+        divPrincipal.appendChild(divCargas);
+        console.log(divPrincipal);
+        console.log(divCargas);
+        console.log(tabla);
     }
 
     agregarMenu(array) {

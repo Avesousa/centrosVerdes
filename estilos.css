@@ -115,7 +115,8 @@ header img {
 
 /*/////////ESCRITORIO/////////*/
 #divEgreso,
-#divIngreso {
+#divIngreso,
+#imagenMixta {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F2F5A9;
@@ -180,11 +181,10 @@ header img {
 
 .divValidacion{
     width: 94%;
-    background-color: red;
     color: white;
     padding: 1%;
     margin: 0;
-    /*display: none;*/
+    display: none;
 }
 
 .tituloInput{
@@ -249,6 +249,7 @@ header img {
     float: left;
     padding: 1%;
     margin: 0;
+    overflow: auto;
 }
 .seccionBolsonSelect{
     margin:0;
@@ -279,8 +280,33 @@ header img {
 }
 
 .seccionBolson td{
+    border: 1px solid white;
+}
+
+
+.seccionEstadistica{
+    width: 100%;
+    padding-left: 10%;
+    float: right;
+    font-size: 12px;
+}
+
+.seccionEstadistica td{
     border: 1px solid black;
 }
+/*
+.seccionEstadistica tr{
+    font-size: 0.8em;
+    padding: 1%;
+    width: 100%;
+
+}
+
+.seccionEstadistica td{
+    border: 1px solid white;
+    width: 33.3%;
+}*/
+
 /*//////FOOTER/////////*/
 footer{
     position: fixed;
@@ -297,12 +323,14 @@ footer{
 #escritorio, /*Escritorio de todas las cargas*/
 /*#carga, /*Carga de los elementos*/
 #elementos, /*Elementos para cargar, cuando tiene varios metodos*/
-#camion
-#bolson /*Carga de bolson*/
-#informacion /*Información de cantidad de cargas*/
+#camion,
+#bolson, /*Carga de bolson*/
+#informacion, /*Información de cantidad de cargas*/
 #mostradorPeso, /*///MOSTRADOR DEL PESO EN CARGA///*/
 #mostradorCantidad,/*///MOSTRADOR DE CANTIDAD EN CARGA///*/
-#botonContinuar /*///////BOTON DE CONTINUAR MIXTO//////*/{
+/*#mixta, *//*///////Carga de mixto//////////*/
+#botonContinuar /*///////BOTON DE CONTINUAR MIXTO//////*/
+{
     display: none;
 }
 
@@ -350,7 +378,7 @@ footer{
     .botonIngreso,
     .botonIngreso{
     width: 30%;
-    padding: 20px;
+    padding: 10px;
     }
     
     .seccionBolsonSelect select{
@@ -421,5 +449,18 @@ footer{
     .contador #pesoMostrado{
     font-family: monospace;
     font-size: 0.8em;
+    }
+
+    .seccionEstadistica tr{
+        font-size: 1em;
+        padding: 1%;
+        width: 100%;
+    
+    }
+    
+    .seccionEstadistica td{
+        border: 1px solid white;
+        width: 33.3%;
+    }
 }
-}
+
