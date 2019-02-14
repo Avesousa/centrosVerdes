@@ -5,35 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+  
+  #seccionEstadistica{
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    width: 90%;
+    text-align: center;
+    height: 50px;
+  }
+
+  .cargoMixto{
+    background-color: orange;
+    width: 10%;
+    float: left;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 12px;
+  }
+
+  .cargoMixto:first-child{
+    margin-left: 0;
+  }
+  
+  td[rowspan]{ 
+    font-size: 32px; 
+    margin-left: 5px;
+  }
+  
+  #mostradorPesoTotal{
+    width: 100%;
+  }
+
+  .mostradorPeso{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    display: none;
+    border-radius: 15px;
+}
+
+  .mostradorPeso p{
+    padding-left: 30px;
+    font-size: 24px;
+  }
+
+  
+
+  </style>
 </head>
 <body>
+  <div id="seccionEstadistica">
 
+  </div>
 
+  <div id="validadorMixto" class="mostradorPeso">
+  </div>
 <script>
-console.log("**********CREAR TABLA*********");
-        var divPrincipal = document.getElementById("seccionEstadistica");
-        var divCargas = document.createElement("DIV");
-        divCargas.setAttribute("class","cargoMixto");
-        var tabla = document.createElement("TABLE");
-        var filaPrincipal = document.createElement("TR");
-        var colCanal = document.createElement("TD");
-        colCanal.setAttribute("rowspan","2");
-        colCanal.innerText = datos[0];
-        var colCantidad = document.createElement("TD");
-        colCantidad.innerHTML = datos[1];
-        var filaSecundaria = document.createElement("TR");
-        var colPeso = document.createElement("TD");
-        colPeso.innerHTML= datos[2];
-        console.log("comienzo a conectar datos");
-        filaSecundaria.appendChild(colPeso);
-        tabla.appendChild(filaSecundaria);
-        filaPrincipal.appendChild(colCantidad);
-        filaPrincipal.appendChild(colCanal);
-        tabla.appendChild(filaPrincipal);
-        divPrincipal.appendChild(divCargas);
-        console.log(divPrincipal);
-        console.log(divCargas);
-        console.log(tabla);  
+  var pesoTotal = 0;
+
+  function crearTabla(datos){
+    console.log("**********CREAR TABLA*********");
+    var divPrincipal = document.getElementById("seccionEstadistica");
+    var divCargas = document.createElement("DIV");
+    divCargas.setAttribute("class","cargoMixto");
+    var tabla = document.createElement("TABLE");
+    var filaPrincipal = document.createElement("TR");
+    var colCanal = document.createElement("TD");
+    colCanal.setAttribute("rowspan","2");
+    colCanal.innerText = datos[0];
+    var colCantidad = document.createElement("TD");
+    colCantidad.innerHTML = datos[1];
+    var filaSecundaria = document.createElement("TR");
+    var colPeso = document.createElement("TD");
+    colPeso.innerHTML= datos[2];
+    console.log("comienzo a conectar datos");
+    filaPrincipal.appendChild(colCanal);
+    filaPrincipal.appendChild(colCantidad);
+    filaSecundaria.appendChild(colPeso);
+    tabla.appendChild(filaPrincipal);
+    tabla.appendChild(filaSecundaria);
+    divCargas.appendChild(tabla);
+    divPrincipal.appendChild(divCargas);
+    console.log(divPrincipal);
+    console.log(divCargas);
+    console.log(tabla);  
+    pesoTotal += datos[2];
+    validacion(true,"<p>Peso total " + pesoTotal + "</p>", "validadorMixto");
+  }
+
+  function validacion(estado, texto, id) {
+    var id = document.getElementById(id);
+    if (estado) {
+        id.style.display = " flex ";
+        id.style.backgroundColor = "#04B404";
+        id.innerHTML = texto;
+    } else {
+        id.style.display = " flex ";
+        id.style.backgroundColor = "#FA5858";
+        id.innerHTML = texto;
+    }
+}
+
+  var array = ["RD",9,1250.69];
+  crearTabla(array)
 </script>
   
 </body>

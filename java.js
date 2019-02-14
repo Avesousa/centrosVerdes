@@ -37,12 +37,20 @@ var banderaDeCargas = 0;
 var cargaDeCamion = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos: CAMIÓN</h1>'+
     '<div class="contenidoCarga">'+
     '<div id = "validadorCamion" class = "divValidacion"></div>'+
+    '<div class="inputCamion">'+
+    '<div>'+
     '<h3 class="tituloInput">Fecha</h3>'+
     '<input type="date"  name="fecha" id="fecha" class = "fecha" onblur ="user.verificarFecha();" autofocus><br>'+
+    '</div>'+
+    '<div>'+
     '<h3 class="tituloInput">Hora</h3>'+
     '<input type="time" name="hora" id="hora" value="00:00" class="hora" onblur ="user.verificarHora();">'+
+    '</div>'+
+    '<div>'+
     '<h3 class="tituloInput">Patente</h3>'+
     '<input type="text" name="patente" id="patente" class="patente" placeholder="AA123AA" maxlength = "7" title="Deberás ingresar valores de patente ejemplo: AA123AA ó AAA123" onblur ="user.verificarPatente();"><br>'+
+    '</div>'+
+    '</div>'+
     '<h3 class="tituloInput">Observación</h3>'+
     '<textarea type="text" class="observacion" name="observacion" id="observacion"></textarea><br>'+
     '<input type="hidden"  name="turno" id="turno" value="2">'+
@@ -80,7 +88,7 @@ var cargaDeContenido = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos
     '<!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->'+
     '<input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">'+
     '<input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">'+
-    '<input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de bolsón" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
+    '<input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de entrada" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
     '<input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >'+
     '<input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
     '<input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
@@ -93,8 +101,23 @@ var cargaDeContenido = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos
     '<button disabled id="botonContinuar" class="boton botonCargar" name="btn1" onClick="metodoParaMixto.continuar()">Continuar</button>'+
     '</div>'+
     '</div>');
-var cargaDeElementos = ('');
-var cargaMixta = ('');
+var cargaDeElementos = ('<div>'+
+    '<div class="caja">'+
+    '<div id="divIngresoE">'+
+    '<h1 class="tituloEscritorio">Seleccione el método de carga</h1>'+
+    '</div>'+
+    '</div>'+
+    '</div>');
+var cargaMixta = ('<h1 class="tituloEscritorio cargaTitulo">Seleccione canal de Recolección</h1>'+
+    '<div id="seccionEstadistica" class="seccionEstadistica">'+
+    '</div>'+
+    '<div id="validadorMixto" class="mostradorPeso">'+
+    '</div>'+
+    '<div class="contenidoCarga">'+
+    '<div id="imagenMixto" class="cajaMixta">'+
+    '</div>'+
+    '<button id="botonEnviarMixto" disabled class="boton" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>'+
+    '</div>');
 var tablaM = ('<tr>'+
 '<td>Material</td>'+
 '<td>Caracteristica</td>'+
@@ -168,7 +191,7 @@ class Usuario {
                     mostrarPantalla("carga");
                 } else {
                     document.getElementById("camion").style.display = "none";
-                    document.getElementById("bolson").style.display = "inline";
+                    document.getElementById("bolson").style.display = "block";
                     document.getElementById("mixta").style.display = "none";
                     user.abrirMetodos();
                 }
@@ -263,6 +286,7 @@ class Usuario {
             var pesoEntrada = document.getElementById("pesoEntrada").value;
             var pesoSalida = document.getElementById("pesoSalida").value;
             if (tipo != "VENTA" && tipo != "DESCARTE") {
+                console.log("ENTRO EN EL IF DE QUE NO ES VENTA");
                 this.verificar();
                 var pesoVe = ejecutar(pesoEntrada, pesoSalida);
             } else {
@@ -287,19 +311,23 @@ class Usuario {
                     if (pesoSalida == "") { return boton.disabled = true; }
                     banderaPeso = (pesoEg[0] > 0 && (pesoEntrada != ""));
                     idVer = true;
+                    var ventaDescarte = true;
                     break;
                 case ("VENTA"):
                     if (pesoSalida == "") { return boton.disabled = true; }
                     banderaPeso = (pesoEg[0] > 0 && (pesoEntrada != ""));
                     idVer = true;
+                    var ventaDescarte = true;
                     break;
             }
             if (banderaPeso) {
-                if (idVer && idVer != 3) {
-                    validacion(true, "<p>El ID está asociado a: " + nombre + "</p>", "validador");
-                } else {
-
-                    validacion(false, "<p>El ID ingresado no está asociado en la base de datos.</p>", "validador");
+                if(!ventaDescarte){
+                    if (idVer && idVer != 3) {
+                        validacion(true, "<p>El ID está asociado a: " + nombre + "</p>", "validador");
+                    } else {
+    
+                        validacion(false, "<p>El ID ingresado no está asociado en la base de datos.</p>", "validador");
+                    }
                 }
             } else {
                 validacion(false, "<p>¡Hubo un error en el peso!</p>", "validador");
@@ -414,8 +442,7 @@ class Metodo {
         this.pesosalida = document.getElementById('pesoSalida');
         this.caracteristica = document.getElementById("caracteristicaDiv");
         this.material = document.getElementById("materialDiv");
-        this.tablaPesoTotal = document.getElementById("mostradorPesoTotal");
-        this.pesoMostrar = document.getElementById("pesoTotalMostrado");
+        this.estadisticaMixta = document.getElementById("seccionEstadistica");
         this.peso;
         this.etapa = document.getElementById('etapa');
         this.subetapa = document.getElementById('subetapa');
@@ -429,32 +456,32 @@ class Metodo {
         this.camion.style.display = "none";
         this.elemento.style.display = "none";
         this.cantidadBandera = 1;
-        console.log(this.tablaPesoTotal);
-        console.log(this.pesoMostrar);
-        this.tablaPesoTotal.style.display = "none";
-        this.pesoMostrar.style.display = "none";
+        this.estadisticaMixta.style.display = "none";
         cargarListaDeID()
     }
     enviar() {
-        var dato = datoEditableFinal.filter(elemento => elemento != null);
-        if (dato.length > 1) {
-            darCantidadCorrespondiente();
-            camion.crearCamionParticipativo()
-            camion.crearCamionCompuesto();
-        } else {
-            camion.crearCamionUnico();
+        var confirmacion = confirm(usuario + " ¿Deseas ya enviar los datos?");
+        if(confirmacion){
+            var dato = datoEditableFinal.filter(elemento => elemento != null);
+            if (dato.length > 1) {
+                darCantidadCorrespondiente();
+                camion.crearCamionParticipativo()
+                camion.crearCamionCompuesto();
+            } else {
+                camion.crearCamionUnico();
+            }
+            camion.crearBolson();
+            camion.crearCamionParaVieja();
+            google.script.run.envioDeDatos(datosCamion, datosBolson);
+            google.script.run.enviarDatosVieja(datoBolsonVieja, datoCamionVieja);
+            document.getElementById("botonEnviar").style.display = "block";
+            document.getElementById("botonContinuar").style.display = "none";
+            document.getElementById("botonContinuar").disabled = true;
+            document.getElementById("botonEnviar").disabled = true;
+            document.getElementById("botonEnviarMixto").disabled = true;
+            limpiar();
+            alert("¡Se ha cargado EXITOSAMENTE el camión!");
         }
-        camion.crearBolson();
-        camion.crearCamionParaVieja();
-        google.script.run.envioDeDatos(datosCamion, datosBolson);
-        google.script.run.enviarDatosVieja(datoBolsonVieja, datoCamionVieja);
-        document.getElementById("botonEnviar").style.display = "inline";
-        document.getElementById("botonContinuar").style.display = "none";
-        document.getElementById("botonContinuar").disabled = true;
-        document.getElementById("botonEnviar").disabled = true;
-        document.getElementById("botonEnviarMixto").disabled = true;
-        limpiar();
-        alert("¡Se ha cargado EXITOSAMENTE el camión!");
     }
     cargar(esOnoBolson) {
         etapa = document.getElementById("etapa").value;
@@ -494,7 +521,7 @@ class Metodo {
 }
 class cargaBolson extends Metodo {
     abrir() {
-        this.carga.style.display = "inline";
+        this.carga.style.display = "block";
         this.mixta.style.display = "none";
         this.id.type = "number";
         this.id.setAttribute('oninput', 'user.verificarID("' + baseVerificar[canal] + '"); cambiarBoton(); clickear();');
@@ -504,6 +531,7 @@ class cargaBolson extends Metodo {
         this.idDGREC;
         this.pesoentrada.type = "number";
         this.pesoentrada.value = "";
+        this.pesoentrada.placeholder = "Peso de Bolsón";
         this.pesosalida.value = 0;
         this.pesoUnitario.value = "N/A";
         this.caracteristica.value = "Bolsones";
@@ -518,8 +546,8 @@ class cargaBolson extends Metodo {
         document.getElementById("caracteristica").value = "Bolsones";
         document.getElementById("material").value = "mixto";
         recibirBolson();
-        document.getElementById("mostradorPeso").style.display = "inline";
-        document.getElementById("mostradorCantidad").style.display = "inline";
+        document.getElementById("mostradorPeso").style.display = "block";
+        document.getElementById("mostradorCantidad").style.display = "block";
     }
 
     cargar() {
@@ -546,18 +574,17 @@ class cantidadPesoASOC extends Metodo {
 class mixta extends Metodo {
     abrir() {
         this.carga.style.display = "none";
-        this.mixta.style.display = "inline";
+        this.mixta.style.display = "block";
         banderaMixto = true;
         this.mostrarCanales();
         document.getElementById("botonEnviar").style.display = "none";
-        document.getElementById("botonContinuar").style.display = "inline";
+        document.getElementById("botonContinuar").style.display = "block";
     }
 
     continuar() {
-        this.mixta.style.display = "inline";
+        this.mixta.style.display = "block";
         this.carga.style.display = "none";
-        this.tablaPesoTotal.style.display = "inline";
-        this.pesoMostrar.style.display = "inline";
+        this.estadisticaMixta.style.display = "block";
         var link = document.getElementById(canal);
         var img = document.getElementById("imagen" + canal);
         link.onclick = "";
@@ -567,7 +594,6 @@ class mixta extends Metodo {
         var estadistica = [canal,cantidadCargas,pesoT];
         console.log(estadistica);
         this.crearTabla(estadistica);
-        this.pesoMostrar.innerHTML = pesoTotalG;
         pesoT = 0;
         cantidadCargas = 0;
         document.getElementById("cantidadMostrado").innerHTML = 0;
@@ -593,18 +619,20 @@ class mixta extends Metodo {
         colCantidad.innerHTML = datos[1];
         var filaSecundaria = document.createElement("TR");
         var colPeso = document.createElement("TD");
-        colPeso.innerHTML= datos[2];
+        colPeso.innerHTML= Math.round(datos[2] * 100) / 100;
         console.log("comienzo a conectar datos");
-        filaSecundaria.appendChild(colPeso);
-        tabla.appendChild(filaSecundaria);
-        filaPrincipal.appendChild(colCantidad);
         filaPrincipal.appendChild(colCanal);
+        filaPrincipal.appendChild(colCantidad);
+        filaSecundaria.appendChild(colPeso);
         tabla.appendChild(filaPrincipal);
+        tabla.appendChild(filaSecundaria);
+        divCargas.appendChild(tabla);
         divPrincipal.appendChild(divCargas);
         console.log(divPrincipal);
         console.log(divCargas);
         console.log(tabla);
-    }
+        validacion(true,"<p>Peso total " + Math.round(pesoTotalG * 100) / 100 + "</p>", "validadorMixto");
+      }
 
     agregarMenu(array) {
         console.log("***************AGREGAR MENU***************");
@@ -632,7 +660,7 @@ class mixta extends Metodo {
 }
 class salidaMaterialE extends Metodo {
     abrir() {
-        this.carga.style.display = "inline";
+        this.carga.style.display = "block";
         this.mixta.style.display = "none";
         document.getElementById("ingreso").value = "Egreso";
         camion.ingreso = "Egreso"
@@ -648,12 +676,12 @@ class salidaMaterialE extends Metodo {
         this.pesosalida.type = "number";
         this.pesosalida.value = "";
         this.pesosalida.focus();
-        this.material.style.display = "inline";
-        this.caracteristica.style.display = "inline";
+        this.material.style.display = "block";
+        this.caracteristica.style.display = "block";
         seleccionDeMateriales(datoMaterial, "materialDiv", "materialF");
         seleccionDeMateriales(datoCaracteristica, "caracteristicaDiv", "caracteristicaF");
         banderaEgreso = true;
-        document.getElementById("mostradorPeso").style.display = "inline";
+        document.getElementById("mostradorPeso").style.display = "block";
     }
 
     cargar() {
@@ -671,7 +699,7 @@ class salidaMaterialE extends Metodo {
 }
 class cantidadPesoE extends Metodo{
     abrir() {
-        this.carga.style.display = "inline";
+        this.carga.style.display = "block";
         this.mixta.style.display = "none";
         document.getElementById("ingreso").value = "Egreso";
         camion.ingreso = "Egreso"
@@ -688,11 +716,11 @@ class cantidadPesoE extends Metodo{
         this.cantidad.type = "number";
         this.cantidad.setAttribute('oninput','user.verificarCantidad(); cambiarBoton(); clickear();');
         this.cantidad.focus();
-        this.material.style.display = "inline";
+        this.material.style.display = "block";
         document.getElementById("caracteristica").value = "Bolsones";
         seleccionDeMateriales(datoMaterial, "materialDiv", "materialF");
         banderaEgreso = true;
-        document.getElementById("mostradorPeso").style.display = "inline";
+        document.getElementById("mostradorPeso").style.display = "block";
     }
 
     cargar() {
@@ -723,7 +751,7 @@ class cantidadPesoE extends Metodo{
 }
 class entradaSalidaE extends Metodo{
     abrir() {
-        this.carga.style.display = "inline";
+        this.carga.style.display = "block";
         this.mixta.style.display = "none";
         document.getElementById("ingreso").value = "Egreso";
         camion.ingreso = "Egreso"
@@ -743,7 +771,7 @@ class entradaSalidaE extends Metodo{
         this.caracteristica.value = "Bolsones";
         this.material.value = "Mixto";
         banderaEgreso = true;
-        document.getElementById("mostradorPeso").style.display = "inline";
+        document.getElementById("mostradorPeso").style.display = "block";
     }
 
     cargar() {
@@ -784,11 +812,11 @@ class Camion {
         var horaA = (fechaHoy.getHours() + ":" + fechaHoy.getMinutes());
         var fechaActual = (fechaA + " " + horaA);
         if (metodoParaCargar.material.value == "") { metodoParaCargar.material.value == "Mixto" }
-        if (metodoParaCargar.material.value == "") { metodoParaCargar.material.value == "Mixto" }
+        if (metodoParaCargar.caracteristica.value == "") { metodoParaCargar.caracteristica.value == "Bolsones" }
         var dato = datoEditableFinal.filter(elemento => elemento != null);
         datosCamion.push([this.tipoCamion[2], usuario, fechaActual, idIngreso, coop, cv,
             this.fecha, this.anio, this.mes, this.dia, this.turno, this.hora, this.ingreso,
-            this.patente, canal, metodoParaCargar.material.value, metodoParaCargar.caracteristica.value, cantidad,
+            this.patente, canal, dato[0][2], dato[0][1], cantidad,
             dato[0][6], scannerPeso(pesoEntradaG), scannerPeso(pesoSalidaG), scannerPeso(pesoTotalG), "N/A",
             this.observacion, dato[0][4], dato[0][3], dato[0][0],
             dato[0][0], dato[0][0], dato[0][0]
@@ -1416,7 +1444,7 @@ function gestionarEtapas() {
         if (datosEtapas.length > 1) {
             var div = document.getElementById("etapaDiv");
             div.innerHTML = "";
-            div.style.display = "inline";
+            div.style.display = "block";
             var seleccion = document.createElement("select");
             seleccion.setAttribute("id", "etapa");
             seleccion.setAttribute("oninput", "gestionarSubEtapas();");
@@ -1447,7 +1475,7 @@ function gestionarSubEtapas() {
                 var input = document.createElement("select");
                 input.setAttribute("id", "subetapa");
                 for (var j = 0; datoSubEtapas.length > j; j++) {
-                    div.style.display = "inline";
+                    div.style.display = "block";
                     var opcion = document.createElement("OPTION");
                     input.appendChild(opcion);
                     opcion.innerHTML = datoSubEtapas[j][0];
@@ -1574,13 +1602,8 @@ function recibirBolson() {
 }
 
 function limpiar() {
-    document.getElementById("elementos").style.display = "none";
-    document.getElementById("carga").style.display = "none";
-    document.getElementById("mixta").style.display = "none";
-    document.getElementById("mostradorPeso").style.display = "none";    
-    document.getElementById("mostradorCantidad").style.display = "none";
-    document.getElementById("mostradorPesoTotal").style.display = "none";    
-    document.getElementById("tablaDeEstadistica").style.display = "none"; 
+    document.getElementById("seccionEstadistica").innerHTML ="";
+    document.getElementById("validadorMixto").innerHTML ="";
     document.getElementById("mixta").innerHTML = cargaMixta;
     document.getElementById("bolson").innerHTML = cargaDeContenido;
     document.getElementById("camion").innerHTML = cargaDeCamion;
@@ -1615,6 +1638,11 @@ function colocarTodoEnNone(){
         document.getElementById("subetapaDiv"),
         document.getElementById("materialDiv"),
         document.getElementById("caracteristicaDiv"),
+        document.getElementById("elementos"),
+        document.getElementById("carga"),
+        document.getElementById("mixta"),
+        document.getElementById("mostradorPeso"),    
+        document.getElementById("mostradorCantidad")
     ];
     for(var i = 0; i < array.length; i++){
         if(array[i] != null){

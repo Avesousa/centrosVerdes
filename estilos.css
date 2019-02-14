@@ -44,7 +44,7 @@ header img {
 /*/////////CONTENEDOR//////////////*/
 .contenedor{
     margin-top: 10%; 
-    margin-bottom: 40px;
+    margin-bottom: 90px;
 }
 
 .caja{
@@ -116,7 +116,7 @@ header img {
 /*/////////ESCRITORIO/////////*/
 #divEgreso,
 #divIngreso,
-#imagenMixta {
+#divIngresoE {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F2F5A9;
@@ -167,6 +167,7 @@ header img {
     border-radius: 0 0 15px 15px;
     box-shadow: 2px 2px 5px -4px;
     font-size: 32px;
+    margin-bottom: 10px;
 }
 
 .botonCargar{
@@ -309,17 +310,62 @@ header img {
     border: 1px solid white;
 }
 
+#seccionEstadistica{
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    width: 90%;
+    text-align: center;
+    height: 50px;
+  }
 
-.seccionEstadistica{
+  .cargoMixto{
+    background-color: orange;
+    width: 135px;
+    float: left;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 12px;
+    margin-top: 3px;
+  }
+
+  .cargoMixto:first-child{
+    margin-left: 0;
+  }
+  
+  .cargoMixto td{
+      font-size: 14px;
+      padding-left: 10px;
+  }
+  .cargoMixto td[rowspan]{ 
+    font-size: 26px; 
+    margin-left: 5px;
+    color: white;
+    border-right: 1px solid white;
+    padding-right: 12px;
+  }
+  
+
+  #mostradorPesoTotal{
     width: 100%;
-    padding-left: 10%;
-    float: right;
-    font-size: 12px;
+  }
+
+  .mostradorPeso{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    display: none;
+    border-radius: 15px;
 }
 
-.seccionEstadistica td{
-    border: 1px solid black;
-}
+  .mostradorPeso p{
+    text-align: center;
+    font-size: 24px;
+    width: 100%;
+    margin: 5px;
+  }
+
 /*
 .seccionEstadistica tr{
     font-size: 0.8em;
@@ -343,6 +389,32 @@ footer{
     color: white;
     font-size: 20px; 
     padding: 20px;
+    text-align: center;
+}
+
+footer h1{
+    text-align: center;
+    color: #FACC2E;
+}
+
+footer p{
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10px;
+    font-size: 14px;
+    margin-top: 2px;
+    width: 100%;
+    float: left;
+}
+
+footer a{
+    text-decoration: none;
+    color: white;
+    font-style: unset;
+}
+
+footer span{
+    color: #FACC2E;
 }
 
 #ingreso-principal,
@@ -426,6 +498,11 @@ footer{
     .divValidacion{
         width: 100%;
     }
+
+    footer{
+        height: 60px;
+        text-align: left;
+    }
     
 }
 
@@ -485,18 +562,6 @@ footer{
     font-size: 0.8em;
     }
 
-    .seccionEstadistica tr{
-        font-size: 1em;
-        padding: 1%;
-        width: 100%;
-    
-    }
-    
-    .seccionEstadistica td{
-        border: 1px solid white;
-        width: 33.3%;
-    }
-
     .tituloEscritorio{
         font-size: 18px;
     }
@@ -514,4 +579,31 @@ footer{
         float: left;
         width: 100%;
     }
+
+    #seccionEstadistica{
+        padding-bottom: 5px;
+      }
+    
+      .cargoMixto{
+        width: 100%;
+        padding: 5px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cargoMixto td{
+          font-size: 10px;
+          padding-left: 5px;
+      }
+      .cargoMixto td[rowspan]{ 
+        font-size: 18px; 
+        margin-left: 5px;
+        color: white;
+        border-right: 1px solid white;
+        padding-right: 12px;
+      }
+      
+      .cargoMixto:last-child {
+          margin-bottom: 5px
+      }
 }

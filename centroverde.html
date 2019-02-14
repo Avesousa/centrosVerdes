@@ -12,7 +12,7 @@
       <img class = "logoCV" src="http://carlitos.com.ar/DGREC/image/ciudadverdeGocad.png" alt="Logo de la dirección">
     </header>
 <!-- Parte para poder logger -->
-    <div id="ingreso-principal" class ="ingreso contenedor contenedorIngreso">
+  <div id="ingreso-principal" class ="ingreso contenedor contenedorIngreso">
       <div class="caja">
           <h1>Ingreso SED</h1><br>
           <hr>
@@ -101,7 +101,7 @@
                 <!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->
                 <input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">
                 <input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">
-                <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de bolsón" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de entrada" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
                 <input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >
                 <input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
                 <input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
@@ -116,66 +116,37 @@
             </div>
           </div>
           <div id="mixta" class="contenedorCarga">
-            <h1 class="tituloEscritorio cargaTitulo">Seleccione canal de Recolección</h1>
-            <div id="seccionEstadistica" class="seccionEstadistica">
-              <div class="cargoMixto">
-                <table>
-                  <tr>
-                    <td rowspan="2">
-                      CANAL
-                    </td>
-                    <td>
-                      CANTIDAD
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> PESO</td>
-                  </tr>
-                </table>
-                <div id="mostradorPesoTotal">
-                    <p>Peso total:</p>
-                    <p id="pesoTotalMostrado">0</p>
+              <h1 class="tituloEscritorio cargaTitulo">Seleccione canal de Recolección</h1>
+              <div id="seccionEstadistica" class="seccionEstadistica">
+              </div>
+              <div id="validadorMixto" class="mostradorPeso">
+              </div>
+              <div class="contenidoCarga">
+                <div id="imagenMixto" class="cajaMixta">
                 </div>
+                <button id="botonEnviarMixto" disabled class="boton" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>
               </div>
-            </div>
-            <div class="contenidoCarga">
-              <div id="imagenMixto" class="cajaMixta">
-              </div>
-            </div>
-            <button id="botonEnviarMixto" disabled class="efecto botongra" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>
           </div>
         </div>
       </div>
   </div>
   <div id="elementos" class="contenedor">
-      <div class="contenedor">
-          <div class="cajaDeInput">
-            <div class="tipoDeDato" id="divIngresoE">
-              <h3>Ingreso</h3>
-            </div>
+      <div>
+        <div class="caja">
+          <div id="divIngresoE">
+            <h1 class="tituloEscritorio">Seleccione el método de carga</h1>
           </div>
         </div>
-              
+      </div>
   </div>
   <footer>
-    LLAMA A MIGUEL Y QUE EL LO ARREGLE 
+    <h1>Contacto</h1>
+    <p><span>Correo: </span><a href="mailto:soportedgrec@gmail.com">soportedgrec@gmail.com</a>
+    <span>Teléfono Fijo:</span> <a href=”tel://43606000”>4360-6000</a> INT:2901
+    <span>Whatsapp:</span><a href="https://api.whatsapp.com/send?phone=549112320000&text=Hola%20necesito%20su%20ayuda%20con%20respecto%20a%20algo%20del%20SED">
+      +54 9 11 2320-000</a>
+    </p>
   </footer>
-  <script>
-    function crearMenu(valorDiv,cantidad){
-      var div = document.getElementById(valorDiv);
-      for (var i = 0; cantidad >= (i + 1); i++) {
-        var link = document.createElement('a');
-        link.setAttribute('onclick','alert("Haz presionado un botón")');
-        var imagen = document.createElement('img');
-        imagen.setAttribute('class', 'botonIngreso');
-        imagen.setAttribute('alt', ('"' + 'Boton del método' + '"'));
-        imagen.setAttribute('src', 'http://carlitos.com.ar/DGREC/image/rallamativo.png'); //'"http://carlitos.com.ar/DGREC/image/'+array[i][0]+'.png"');
-        link.appendChild(imagen);
-        div.appendChild(link);
-      }
-    }
-    crearMenu("imagenMixto",4);
-  </script>
 </body>
 
 </html>
