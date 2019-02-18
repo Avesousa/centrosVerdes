@@ -1,4 +1,5 @@
-    html{
+<style>
+          html{
     min-height: 100%;
     position: relative;
 }
@@ -131,6 +132,7 @@ header img {
     padding: 5px;
     background-color: #FFBF00;
     color: white;
+    font-family:'Courier New', Courier, monospace;
 }
 
 #divEgreso{
@@ -607,3 +609,4 @@ footer span{
           margin-bottom: 5px
       }
 }
+    </style>

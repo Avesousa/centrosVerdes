@@ -6,112 +6,86 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-  
-  #seccionEstadistica{
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 10px;
-    width: 90%;
-    text-align: center;
-    height: 50px;
-  }
-
-  .cargoMixto{
-    background-color: orange;
-    width: 10%;
-    float: left;
-    padding: 5px;
-    margin-left: 10px;
-    border-radius: 12px;
-  }
-
-  .cargoMixto:first-child{
-    margin-left: 0;
-  }
-  
-  td[rowspan]{ 
-    font-size: 32px; 
-    margin-left: 5px;
-  }
-  
-  #mostradorPesoTotal{
-    width: 100%;
-  }
-
-  .mostradorPeso{
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    display: none;
-    border-radius: 15px;
+p{
+  font-size: 40px;
 }
 
-  .mostradorPeso p{
-    padding-left: 30px;
-    font-size: 24px;
-  }
+    .pa{
+      font-family:'Courier New', Courier, monospace;
+    }
+.pb{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.pc{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.pd{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+.pe{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.pf{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.pg{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.ph{
+  font-family:'Times New Roman', Times, serif;
+}
+.pi{
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.pj{
+  font-family:Arial, Helvetica, sans-serif;
+}
+.pk{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
+.pl{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.pm{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.pn{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+    
+.pv{
+  font-family: chalet;
+}
   
-
   </style>
 </head>
 <body>
-  <div id="seccionEstadistica">
+  <p class="pa">abc uno zuels</p>
+  <p class="pb">abc uno zuels</p>
+  <p class="pc">abc uno zuels</p>
+  <p class="pd">abc uno zuels</p>
+  <p class="pe">abc uno zuels</p>
+  <p class="pf">abc uno zuels</p>
+  <p class="pg">abc uno zuels</p>
+  <p class="ph">abc uno zuels</p>
+  <p class="pi">abc uno zuels</p>
+  <p class="pj">abc uno zuels</p>
+  <p class="pk">abc uno zuels</p>
+  <p class="pl">abc uno zuels</p>
+  <p class="pm">abc uno zuels</p>
+  <p class="pn">abc uno zuels</p>
+  <a onclick="muestra(this)"><img src="http://carlitos.com.ar/DGREC/image/rallamativo.png" alt=""></a>
+  <p class="pv" onclick="muestra(this)">abc uno zuels</p>
 
-  </div>
-
-  <div id="validadorMixto" class="mostradorPeso">
-  </div>
-<script>
-  var pesoTotal = 0;
-
-  function crearTabla(datos){
-    console.log("**********CREAR TABLA*********");
-    var divPrincipal = document.getElementById("seccionEstadistica");
-    var divCargas = document.createElement("DIV");
-    divCargas.setAttribute("class","cargoMixto");
-    var tabla = document.createElement("TABLE");
-    var filaPrincipal = document.createElement("TR");
-    var colCanal = document.createElement("TD");
-    colCanal.setAttribute("rowspan","2");
-    colCanal.innerText = datos[0];
-    var colCantidad = document.createElement("TD");
-    colCantidad.innerHTML = datos[1];
-    var filaSecundaria = document.createElement("TR");
-    var colPeso = document.createElement("TD");
-    colPeso.innerHTML= datos[2];
-    console.log("comienzo a conectar datos");
-    filaPrincipal.appendChild(colCanal);
-    filaPrincipal.appendChild(colCantidad);
-    filaSecundaria.appendChild(colPeso);
-    tabla.appendChild(filaPrincipal);
-    tabla.appendChild(filaSecundaria);
-    divCargas.appendChild(tabla);
-    divPrincipal.appendChild(divCargas);
-    console.log(divPrincipal);
-    console.log(divCargas);
-    console.log(tabla);  
-    pesoTotal += datos[2];
-    validacion(true,"<p>Peso total " + pesoTotal + "</p>", "validadorMixto");
-  }
-
-  function validacion(estado, texto, id) {
-    var id = document.getElementById(id);
-    if (estado) {
-        id.style.display = " flex ";
-        id.style.backgroundColor = "#04B404";
-        id.innerHTML = texto;
-    } else {
-        id.style.display = " flex ";
-        id.style.backgroundColor = "#FA5858";
-        id.innerHTML = texto;
+  <script>
+    function muestra(evento){
+      click = evento;
+      console.log(evento);
     }
-}
-
-  var array = ["RD",9,1250.69];
-  crearTabla(array)
-</script>
+  </script>
   
 </body>
 </html>

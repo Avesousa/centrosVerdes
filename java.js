@@ -1,5 +1,4 @@
-
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,100 +33,6 @@ var banderaMixto = false;
 var botonParaClickear = "botonIngresar";
 var cantidadCargas = 0;
 var banderaDeCargas = 0;
-var cargaDeCamion = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos: CAMIÓN</h1>'+
-    '<div class="contenidoCarga">'+
-    '<div id = "validadorCamion" class = "divValidacion"></div>'+
-    '<div class="inputCamion">'+
-    '<div>'+
-    '<h3 class="tituloInput">Fecha</h3>'+
-    '<input type="date"  name="fecha" id="fecha" class = "fecha" onblur ="user.verificarFecha();" autofocus><br>'+
-    '</div>'+
-    '<div>'+
-    '<h3 class="tituloInput">Hora</h3>'+
-    '<input type="time" name="hora" id="hora" value="00:00" class="hora" onblur ="user.verificarHora();">'+
-    '</div>'+
-    '<div>'+
-    '<h3 class="tituloInput">Patente</h3>'+
-    '<input type="text" name="patente" id="patente" class="patente" placeholder="AA123AA" maxlength = "7" title="Deberás ingresar valores de patente ejemplo: AA123AA ó AAA123" onblur ="user.verificarPatente();"><br>'+
-    '</div>'+
-    '</div>'+
-    '<h3 class="tituloInput">Observación</h3>'+
-    '<textarea type="text" class="observacion" name="observacion" id="observacion"></textarea><br>'+
-    '<input type="hidden"  name="turno" id="turno" value="2">'+
-    '<input type="hidden" name="ingreso" id="ingreso" value="Ingreso">'+
-    '<button id="botonSeguir" class="botonCargar boton" name="btn1" onClick ="user.abrirMetodos()" disabled>Siguiente</button>'+
-    '</div>');
-var cargaDeContenido = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos:</h1>'+
-    '<div class="mostrador" id="mostrador">'+
-    '<div id="mostradorCantidad" class="contador">'+
-    '<p>Cantidad:</p>'+
-    '<p id="cantidadMostrado">0</p>'+
-    '</div>'+
-    '<div id="mostradorPeso" class="contador">'+
-    '<p>Peso total:</p>'+
-    '<p id="pesoMostrado">0,00</p>'+
-    '</div><br><br>'+
-    '</div>'+
-    '<div class="contenidoCarga">'+
-    '<div id ="validador" class = "divValidacion"></div>'+
-    '<div class="seccionBolsonSelect">'+
-    '<div id="etapaDiv">'+
-    '<input id="etapa" type="hidden" name="etapa" onblur="gestionarSubEtapa()"><br>'+
-    '</div>'+
-    '<div id="subetapaDiv">'+
-    '<input id="subetapa" type="hidden" name="subEtapa"><br>'+
-    '</div>  '+
-    '<div id="materialDiv">'+
-    '<input id="material" type="hidden" name="material">'+
-    '</div>'+
-    '<div id="caracteristicaDiv">'+
-    '<input type="hidden"  id="caracteristica" name="caracteristica">'+
-    '</div>'+
-    '</div>'+
-    '<div class="seccionBolson">'+
-    '<!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->'+
-    '<input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">'+
-    '<input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">'+
-    '<input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de entrada" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
-    '<input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >'+
-    '<input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
-    '<input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
-    '<button id="botonCargar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.cargar();" disabled>Cargar</button>'+
-    '</div>'+
-    '<div class="seccionBolson">'+
-    '<table id="tablaResumen">'+
-    '</table>'+
-    '<button disabled id="botonEnviar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.enviar()">Enviar</button>'+
-    '<button disabled id="botonContinuar" class="boton botonCargar" name="btn1" onClick="metodoParaMixto.continuar()">Continuar</button>'+
-    '</div>'+
-    '</div>');
-var cargaDeElementos = ('<div>'+
-    '<div class="caja">'+
-    '<div id="divIngresoE">'+
-    '<h1 class="tituloEscritorio">Seleccione el método de carga</h1>'+
-    '</div>'+
-    '</div>'+
-    '</div>');
-var cargaMixta = ('<h1 class="tituloEscritorio cargaTitulo">Seleccione canal de Recolección</h1>'+
-    '<div id="seccionEstadistica" class="seccionEstadistica">'+
-    '</div>'+
-    '<div id="validadorMixto" class="mostradorPeso">'+
-    '</div>'+
-    '<div class="contenidoCarga">'+
-    '<div id="imagenMixto" class="cajaMixta">'+
-    '</div>'+
-    '<button id="botonEnviarMixto" disabled class="boton" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>'+
-    '</div>');
-var tablaM = ('<tr>'+
-'<td>Material</td>'+
-'<td>Caracteristica</td>'+
-'<td>Peso</td>'+
-'</tr>');
-var tablaB = ('<tr>'+
-'<td>ID</td>'+
-'<td>NOMBRE</td>'+
-'<td>PESO</td>'+
-'</tr>');
 //////////////////////////////////////////VARIABLES PARA HACER CONEXIÓN CON GOOGLE////////////////////////////
 var datoNombres = [];
 var datoClaves = [];
@@ -138,6 +43,11 @@ var datosEtapas = [];
 var datoSubEtapas = [];
 var datosMetodos = [];
 var canales = [];
+
+////////////////////////////////////////////VARIABLES DEL CANDADO////////////////////////////////////////////////
+var candado = false;
+var fechaCandado = "";
+var horaCandado = "";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////CLASE DE USUARIO///////////////////////////////////////////////////////////
@@ -194,6 +104,20 @@ class Usuario {
                     document.getElementById("bolson").style.display = "block";
                     document.getElementById("mixta").style.display = "none";
                     user.abrirMetodos();
+                }
+                if(candado){
+                    var horaC = document.getElementById("hora");
+                    var fechaC = document.getElementById("fecha");
+                    horaC.value = horaCandado;
+                    horaC.disabled = true;
+                    fechaC.value = fechaCandado;
+                    fechaC.disabled = true;
+                    document.getElementById("candado").innerHTML = '<img class = "logoCV" src="'+
+                    'http://carlitos.com.ar/DGREC/image/raoscuro.png" alt="candado cerrado">';
+                    this.verificarHora();
+                    fechaVer = true;
+                    //horaVer = true;
+                    document.getElementById("patente").focus();
                 }
             }
         }
@@ -286,7 +210,6 @@ class Usuario {
             var pesoEntrada = document.getElementById("pesoEntrada").value;
             var pesoSalida = document.getElementById("pesoSalida").value;
             if (tipo != "VENTA" && tipo != "DESCARTE") {
-                console.log("ENTRO EN EL IF DE QUE NO ES VENTA");
                 this.verificar();
                 var pesoVe = ejecutar(pesoEntrada, pesoSalida);
             } else {
@@ -492,7 +415,6 @@ class Metodo {
         document.getElementById("botonContinuar").disabled = false; 
         crearResumen(this.informacion);
         var etapaConcatenada = etapa + subetapa;
-        console.log(this.cantidadBandera);
         this.pesoCanal = pesoPorCanal(this.peso[5], this.peso[3], this.peso[4],this.cantidadBandera);
         this.pesoMaterial = pesoPorMaterial(this.peso[2], this.peso[0], this.peso[1],this.cantidadBandera);
         this.pesoEtapa = pesoPorEtapa(etapaConcatenada, this.peso[2], this.peso[0], this.peso[1],this.cantidadBandera);
@@ -582,23 +504,25 @@ class mixta extends Metodo {
     }
 
     continuar() {
-        this.mixta.style.display = "block";
-        this.carga.style.display = "none";
-        this.estadisticaMixta.style.display = "block";
-        var link = document.getElementById(canal);
-        var img = document.getElementById("imagen" + canal);
-        link.onclick = "";
-        img.src = "http://carlitos.com.ar/DGREC/image/raoscuro.png"; //'"http://carlitos.com.ar/DGREC/image/'+canal+'.png"');
-        document.getElementById("botonEnviarMixto").disabled = false;
-        botonParaClickear = "botonEnviar";
-        var estadistica = [canal,cantidadCargas,pesoT];
-        console.log(estadistica);
-        this.crearTabla(estadistica);
-        pesoT = 0;
-        cantidadCargas = 0;
-        document.getElementById("cantidadMostrado").innerHTML = 0;
-        document.getElementById("pesoMostrado").innerHTML = 0;
-        vaciarResumen();
+        var confirmacion = confirm("¿Deseas continuar agregando más canales?");
+        if(confirmacion){     
+            this.mixta.style.display = "block";
+            this.carga.style.display = "none";
+            this.estadisticaMixta.style.display = "block";
+            var link = document.getElementById(canal);
+            var img = document.getElementById("imagen" + canal);
+            link.onclick = "";
+            img.src = "http://carlitos.com.ar/DGREC/image/raoscuro.png"; //'"http://carlitos.com.ar/DGREC/image/'+canal+'.png"');
+            document.getElementById("botonEnviarMixto").disabled = false;
+            botonParaClickear = "botonEnviar";
+            var estadistica = [canal,cantidadCargas,pesoT];
+            this.crearTabla(estadistica);
+            pesoT = 0;
+            cantidadCargas = 0;
+            document.getElementById("cantidadMostrado").innerHTML = 0;
+            document.getElementById("pesoMostrado").innerHTML = 0;
+            vaciarResumen();
+        }
     }
 
     mostrarCanales() {
@@ -606,7 +530,6 @@ class mixta extends Metodo {
     }
 
     crearTabla(datos){
-        console.log("**********CREAR TABLA*********");
         var divPrincipal = document.getElementById("seccionEstadistica");
         var divCargas = document.createElement("DIV");
         divCargas.setAttribute("class","cargoMixto");
@@ -620,7 +543,6 @@ class mixta extends Metodo {
         var filaSecundaria = document.createElement("TR");
         var colPeso = document.createElement("TD");
         colPeso.innerHTML= Math.round(datos[2] * 100) / 100;
-        console.log("comienzo a conectar datos");
         filaPrincipal.appendChild(colCanal);
         filaPrincipal.appendChild(colCantidad);
         filaSecundaria.appendChild(colPeso);
@@ -628,19 +550,13 @@ class mixta extends Metodo {
         tabla.appendChild(filaSecundaria);
         divCargas.appendChild(tabla);
         divPrincipal.appendChild(divCargas);
-        console.log(divPrincipal);
-        console.log(divCargas);
-        console.log(tabla);
         validacion(true,"<p>Peso total " + Math.round(pesoTotalG * 100) / 100 + "</p>", "validadorMixto");
       }
 
     agregarMenu(array) {
-        console.log("***************AGREGAR MENU***************");
-        console.log(array);
         var div = document.getElementById("imagenMixto");
         for (var i = 0; array.length > i; i++) {
             var valor = array[i];
-            console.log(valor);
             if (valor != "MIXTA" && valor != "VENTA" && valor != "DESCARTE") {
                 var link = document.createElement('a');
                 link.setAttribute('id', valor);
@@ -655,7 +571,6 @@ class mixta extends Metodo {
                 div.appendChild(link);
             }
         }
-        console.log("***************AGREGAR MENU***************");
     }
 }
 class salidaMaterialE extends Metodo {
@@ -731,7 +646,6 @@ class cantidadPesoE extends Metodo{
         document.getElementById("material").value = materialR;
         this.cantidadBandera = parseInt(this.cantidad.value);
         cantidad += parseInt(this.cantidadBandera)-1;
-        console.log(this.cantidad.value);
         banderaDeCargas = (this.cantidadBandera-1);
         super.cargar("material");
         this.pesoentrada.value = 0;
@@ -788,11 +702,11 @@ class entradaSalidaE extends Metodo{
 
 class Camion {
     constructor() {
-        var recibirFecha = document.getElementById("fecha").value;
-        this.fecha = ((recibirFecha.charAt(8) + recibirFecha.charAt(9)) + "/" + (recibirFecha.charAt(5) + recibirFecha.charAt(6)) + "/" + (recibirFecha.charAt(0) + recibirFecha.charAt(1) + recibirFecha.charAt(2) + recibirFecha.charAt(3)));
-        this.anio = (recibirFecha.charAt(0) + recibirFecha.charAt(1) + recibirFecha.charAt(2) + recibirFecha.charAt(3));
-        this.mes = (recibirFecha.charAt(5) + recibirFecha.charAt(6));
-        this.dia = (recibirFecha.charAt(8) + recibirFecha.charAt(9));
+        this.recibirFecha = document.getElementById("fecha").value;
+        this.fecha = ((this.recibirFecha.charAt(8) + this.recibirFecha.charAt(9)) + "/" + (this.recibirFecha.charAt(5) + this.recibirFecha.charAt(6)) + "/" + (this.recibirFecha.charAt(0) + this.recibirFecha.charAt(1) + this.recibirFecha.charAt(2) + this.recibirFecha.charAt(3)));
+        this.anio = (this.recibirFecha.charAt(0) + this.recibirFecha.charAt(1) + this.recibirFecha.charAt(2) + this.recibirFecha.charAt(3));
+        this.mes = (this.recibirFecha.charAt(5) + this.recibirFecha.charAt(6));
+        this.dia = (this.recibirFecha.charAt(8) + this.recibirFecha.charAt(9));
         this.hora = document.getElementById("hora").value;
         this.patente = document.getElementById("patente").value;
         this.turno = document.getElementById("turno").value;
@@ -825,23 +739,49 @@ class Camion {
 
     }
     crearCamionParaVieja() {
+        console.log("************CREAR CAMION PARA BASE DE DATOS VIEJA****************");
         var fechaHoy = new Date();
         var fechaA = (fechaHoy.getDate() + "/" + (fechaHoy.getMonth() + 1) + "/" + fechaHoy.getFullYear());
         var horaA = (fechaHoy.getHours() + ":" + fechaHoy.getMinutes());
         var fechaActual = (fechaA + " " + horaA);
-        for (var i = 0; i < datoCanal.length; i++) {
-            datoCamionVieja.push([this.anio, this.mes, this.dia, this.turno, this.hora, this.ingreso, this.patente,
-                datoCanal[i][0], metodoParaCargar.material.value, metodoParaCargar.caracteristica.value,
-                cantidad, "", pesoEntradaG, pesoSalidaG
-            ]);
-        }
+        var horaParaVieja;
+        var canalVieja;
+        var largo = 1;
         var dato = datosEditables.filter(elemento => elemento != null);
+        var datoFinal = datoEditableFinal.filter(elemento => elemento != null);
+        if(datoMaterialM.length > 1){canalVieja = canal; largo = datoMaterialM.length;}
+        else{largo = datoCanal.length}
+        console.log("*****largo*****");
+        console.log(largo);
+        for (var i = 0; i < largo; i++) {
+            console.log("*****ENTRO EN FOR 1*****");
+            if(i != 0){horaParaVieja = "";
+            } else { horaParaVieja = this.hora}
+            console.log("*****hora*******");
+            console.log(horaParaVieja);
+            if(dato[i][10] == "RD"){canalVieja = "RA"}
+            else{canalVieja = dato[i][10]}
+            console.log("****canal****");
+            console.log(canalVieja);
+            datoCamionVieja.push([this.anio, this.mes, this.dia, this.turno, horaParaVieja, this.ingreso, this.patente,
+                canalVieja, datoFinal[i][2],datoFinal[i][1],cantidad, "", pesoEntradaG, pesoSalidaG
+            ]);
+            console.log(i);
+            console.log("*****SALIO DE FOR 1*****");
+        }
+        console.log("TAMAÑO DEL QUE SALIO DATOCAMIONVIEJA");
+        console.log(datoCamionVieja.length);
         for (var i = 0; i < dato.length; i++) {
             datoBolsonVieja.push([coop, cv, this.anio, this.mes, this.dia, this.turno, this.hora, this.ingreso,
-                this.patente, dato[i][10], this.observacion, etapa, dato[i][0], dato[i][3], pesoTotalG,
+                this.patente, canalVieja, this.observacion, etapa, dato[i][0], dato[i][3], pesoTotalG,
                 subetapa, etapa + subetapa, dato[i][0], nombre, usuario, fechaActual, this.fecha
             ]);
         }
+        console.log("PARA BOLSON ES:");
+        console.log(datoBolsonVieja);
+        console.log("PARA CAMIÓN ES:");
+        console.log(datoCamionVieja);
+        console.log("************CREO CAMION PARA BASE DE DATOS VIEJA****************");
     }
     crearCamionCompuesto() {
         var valorCanal;
@@ -971,14 +911,9 @@ class Camion {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////FUNCIONES DE JAVASCRIPT////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function crearTablaPesoMixto(){
-
-}
 
 function cambiarBoton(){
     var btnCargar = document.getElementById("botonCargar");
-    console.log("*/*/*/*/****boton cargar*********/*/*/*/*");
-    console.log(btnCargar.disabled)
     if(btnCargar.disabled){
         if(!banderaMixto){
             botonParaClickear = "botonEnviar";
@@ -1045,57 +980,43 @@ function clickear() {
 clickear();
 
 function definirDatos(porCanal, porEtapa, porMaterial, porCara, caracteristica, material, subetapad, etapad, pesoun, cantidad) {
-    console.log("**************ENTRANDO A DEFINIR DATOS********************");
-    console.log(porEtapa + " por etapa");
-    console.log(porCanal + " por Canal");
-    console.log(porMaterial + " por Material");
-    console.log(porCara + " por Caracteristica");
 
     if (porCanal && porEtapa && porMaterial && porCara) {
-        console.log("todo true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "definir"
         ]);
         condicionar();
     } else if (porCanal && !porEtapa && !porMaterial && !porCara) {
-        console.log("solo con canal true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "canal"
         ]);
         condicionar();
     } else if (!porCanal && porEtapa && !porMaterial && !porCara) {
-        console.log("solo con etapa true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "etapa"
         ]);
         condicionar();
     } else if (!porCanal && !porEtapa && porMaterial && !porCara) {
-        console.log("solo con material true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "material"
         ]);
         condicionar();
     } else if (porCanal && porEtapa && !porMaterial && !porCara) {
-        console.log("con canal y etapa true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "canal"
         ]);
         condicionar();
     } else if (!porCanal && !porEtapa && porMaterial && porCara) {
-        console.log("con material y caracteristica true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "caracteristica"
         ]);
         condicionar();
     } else if (!porCanal && !porEtapa && !porMaterial && porCara) {
-        console.log("solo caracteristica true");
         datoEditableFinal.push(["N/A", caracteristica, material,
             subetapad, etapad, canal, pesoun, cantidad, "caracteristica"
         ]);
         condicionar();
     }
-    console.log(datoEditableFinal);
-    console.log("**************SALIENDO DE DEFINIR DATOS********************");
 
 }
 
@@ -1234,7 +1155,6 @@ function pesoPorCanal(peso, pesoEntrada, pesoSalida,cantidad) {
         cantidadCanal.push(cantidad);
         posicionCanal++;
     }
-    console.log(cantidadCanal);
     return bandera;
 
 }
@@ -1312,19 +1232,14 @@ function pesoPorEtapa(etapa, peso, pesoEntrada, pesoSalida,cantidad) {
 }
 
 function crearResumen(datosextras) {
-    console.log("**********CREAR RESUMEN**********");
     var listaBolson = document.getElementById("tablaResumen");
     var fila = document.createElement("TR");
-    console.log(datosextras);
-    console.log(listaBolson);
     fila.setAttribute("id", ("n" + elementoCargado));
     for (var indices = 0; datosextras.length > indices; indices++) {
-        console.log("entro al for");
         var columna = document.createElement("TD");
         var textColumna = document.createTextNode(datosextras[indices]);
         columna.appendChild(textColumna);
         fila.appendChild(columna);
-        console.log(columna);
     }
     var btn = document.createElement("TD");
     btn.innerHTML = '<button onclick="eliminar(' + elementoCargado +')"> x </button>';
@@ -1332,8 +1247,6 @@ function crearResumen(datosextras) {
     cantidad++;
     elementoCargado++;
     listaBolson.appendChild(fila);
-    console.log(listaBolson);
-    console.log("ya termino console.log");
 }
 
 function vaciarResumen() {
@@ -1615,7 +1528,7 @@ function limpiar() {
     metodoParaCargar = undefined; metodoParaMixto = undefined; camion = undefined;
     elementoCargado = 0, idIngreso = 0, idBolson = 0; cantidadCargas = 0; banderaDeCargas = 0;
     pesoT = 0, pesoEntradaG = 0,pesoSalidaG = 0,cantidad = 0,pesoTotalG = 0;
-    idVer = false,pesoVer = false,patenteVer = false,fechaVer = false,horaVer = false, banderaEgreso = false;
+    idVer = false,pesoVer = false,patenteVer = false,fechaVer = false,horaVer = false, banderaMixto = false, banderaEgreso = false;
     posicionCanal = 0,posicionEtapas = 0; posicionMaterial = 0;
     datoPeso = [],datoPesoE = [],datoPesoS = [];
     datoEtapas = [],datoCanal = [],datoMaterialM = [],datoCaracteristicaM = [];
@@ -1625,7 +1538,6 @@ function limpiar() {
     datosEditables = [],datoEditableFinal = [], listaDeID = [];
     datosCamion = [], datosBolson = [], datoComun = [];
     datoBolsonVieja = [],datoCamionVieja = []; 
-
     mostrarPantalla("escritorio");
     colocarTodoEnNone();
 }
@@ -1685,15 +1597,40 @@ function conectarGoogle() {
         datoDelPesoPorMaterial = e[18];
         datoGeneral = e;
         document.getElementById("ingreso-principal").style.display = "block";
-        console.log(datoNombres);
-        console.log(datoClaves);
-        console.log(datoCV);
-        console.log(datoCOOP);
-        console.log(datoMaterial);
-        console.log(datoCaracteristica);
-        console.log(datoDelPesoPorMaterial);
-        console.log(datoGeneral);
     }).darBaseDeDato();
+}
+
+function hacerCandado(div){
+    var fechaC = document.getElementById("fecha");
+    var horaC = document.getElementById("hora");
+    if(candado){
+        fechaC.value = "";
+        horaC.value = "00:00";
+        fechaC.disabled = false;
+        horaC.disabled = false;
+        fechaCandado = "";
+        horaCandado = "";
+        candado = false;
+        var tipo = "llamativo";
+        horaVer = false;
+        fechaVer = false;
+    } else if(horaVer && fechaVer){
+        fechaCandado = fechaC.value;
+        horaCandado = horaC.value;
+        fechaC.disabled = true;
+        horaC.disabled = true;
+        alert("Se han guardado valores de fecha y hora, para cargas posteriores");
+        candado = true;
+        var tipo = "oscuro";
+    }else{
+        return alert("¡No puedes guardar valores de fecha y hora, cuando estos están vacios, o en error!")
+    }
+    div.innerHTML = '<img class = "logoCV" src="'+
+    'http://carlitos.com.ar/DGREC/image/ra'+tipo+'.png" style = "width: 60px;" alt="candado cerrado">';
+
+    /*div.innerHTML = '<img class = "logoCV" src="'+
+    'http://carlitos.com.ar/DGREC/image/candado'+candado+'.png" alt="candado cerrado">';*/
+
 }
 
 conectarGoogle();
@@ -1707,3 +1644,102 @@ conectarGoogle();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
+/////////////////VARIABLES CON HTML//////////////////////////
+var cargaDeCamion = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos: CAMIÓN</h1>'+
+    '<div class="contenidoCarga">'+
+    '<div id = "validadorCamion" class = "divValidacion"></div>'+
+    '<div class="inputCamion">'+
+    '<div>'+
+    '<a id="candado" onclick="hacerCandado(this)"><img src="http://carlitos.com.ar/DGREC/image/rallamativo.png" style="width: 60px;" alt=""></a>'+
+    '</div>'+
+    '<div>'+
+    '<h3 class="tituloInput">Fecha</h3>'+
+    '<input type="date"  name="fecha" id="fecha" class = "fecha" onblur ="user.verificarFecha();" autofocus><br>'+
+    '</div>'+
+    '<div>'+
+    '<h3 class="tituloInput">Hora</h3>'+
+    '<input type="time" name="hora" id="hora" value="00:00" class="hora" onblur ="user.verificarHora();">'+
+    '</div>'+
+    '<div>'+
+    '<h3 class="tituloInput">Patente</h3>'+
+    '<input type="text" name="patente" id="patente" class="patente" placeholder="AA123AA" maxlength = "7" title="Deberás ingresar valores de patente ejemplo: AA123AA ó AAA123" onblur ="user.verificarPatente();"><br>'+
+    '</div>'+
+    '</div>'+
+    '<h3 class="tituloInput">Observación</h3>'+
+    '<textarea type="text" class="observacion" name="observacion" id="observacion"></textarea><br>'+
+    '<input type="hidden"  name="turno" id="turno" value="2">'+
+    '<input type="hidden" name="ingreso" id="ingreso" value="Ingreso">'+
+    '<button id="botonSeguir" class="botonCargar boton" name="btn1" onClick ="user.abrirMetodos()" disabled>Siguiente</button>'+
+    '</div>');
+var cargaDeContenido = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos:</h1>'+
+    '<div class="mostrador" id="mostrador">'+
+    '<div id="mostradorCantidad" class="contador">'+
+    '<p>Cantidad:</p>'+
+    '<p id="cantidadMostrado">0</p>'+
+    '</div>'+
+    '<div id="mostradorPeso" class="contador">'+
+    '<p>Peso total:</p>'+
+    '<p id="pesoMostrado">0,00</p>'+
+    '</div><br><br>'+
+    '</div>'+
+    '<div class="contenidoCarga">'+
+    '<div id ="validador" class = "divValidacion"></div>'+
+    '<div class="seccionBolsonSelect">'+
+    '<div id="etapaDiv">'+
+    '<input id="etapa" type="hidden" name="etapa" onblur="gestionarSubEtapa()"><br>'+
+    '</div>'+
+    '<div id="subetapaDiv">'+
+    '<input id="subetapa" type="hidden" name="subEtapa"><br>'+
+    '</div>  '+
+    '<div id="materialDiv">'+
+    '<input id="material" type="hidden" name="material">'+
+    '</div>'+
+    '<div id="caracteristicaDiv">'+
+    '<input type="hidden"  id="caracteristica" name="caracteristica">'+
+    '</div>'+
+    '</div>'+
+    '<div class="seccionBolson">'+
+    '<!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->'+
+    '<input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">'+
+    '<input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">'+
+    '<input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de entrada" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
+    '<input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >'+
+    '<input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
+    '<input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">'+
+    '<button id="botonCargar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.cargar();" disabled>Cargar</button>'+
+    '</div>'+
+    '<div class="seccionBolson">'+
+    '<table id="tablaResumen">'+
+    '</table>'+
+    '<button disabled id="botonEnviar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.enviar()">Enviar</button>'+
+    '<button disabled id="botonContinuar" class="boton botonCargar" name="btn1" onClick="metodoParaMixto.continuar()">Continuar</button>'+
+    '</div>'+
+    '</div>');
+var cargaDeElementos = ('<div>'+
+    '<div class="caja">'+
+    '<div id="divIngresoE">'+
+    '<h1 class="tituloEscritorio">Seleccione el método de carga</h1>'+
+    '</div>'+
+    '</div>'+
+    '</div>');
+var cargaMixta = ('<h1 class="tituloEscritorio cargaTitulo">Seleccione canal de Recolección</h1>'+
+    '<div id="seccionEstadistica" class="seccionEstadistica">'+
+    '</div>'+
+    '<div id="validadorMixto" class="mostradorPeso">'+
+    '</div>'+
+    '<div class="contenidoCarga">'+
+    '<div id="imagenMixto" class="cajaMixta">'+
+    '</div>'+
+    '<button id="botonEnviarMixto" disabled class="boton" name="btn1" onClick="metodoParaMixto.enviar()">Enviar</button>'+
+    '</div>');
+var tablaM = ('<tr>'+
+'<td>Material</td>'+
+'<td>Caracteristica</td>'+
+'<td>Peso</td>'+
+'</tr>');
+var tablaB = ('<tr>'+
+'<td>ID</td>'+
+'<td>NOMBRE</td>'+
+'<td>PESO</td>'+
+'</tr>');
