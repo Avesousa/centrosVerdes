@@ -1319,7 +1319,9 @@ function colocarMenu(array, ingreso, egreso) {
         var imagen = document.createElement('img');
         imagen.setAttribute('class', 'botonIngreso');
         imagen.setAttribute('alt', ('"' + 'Boton del método ' + valor + '"'));
-        imagen.setAttribute('src', 'http://carlitos.com.ar/DGREC/image/rallamativo.png'); //'"http://carlitos.com.ar/DGREC/image/'+array[i][0]+'.png"');
+        imagen.setAttribute('src', /*'http://carlitos.com.ar/DGREC/image/rallamativo.png'); //*/'http://carlitos.com.ar/DGREC/image/'+valor+'on'+'.png');
+        imagen.setAttribute('onMouseOver','hacerHover("'+valor+'",this,"")');
+        imagen.setAttribute('onMouseOut','hacerHover("'+valor+'",this,"on")');
         link.appendChild(imagen);
         if (valor != 'DESCARTE' && valor != 'VENTA') {
             div.appendChild(link);
@@ -1327,6 +1329,12 @@ function colocarMenu(array, ingreso, egreso) {
             divDos.appendChild(link);
         }
     }
+}
+
+function hacerHover(metodo,casilla,valor){
+    casilla.src = "http://carlitos.com.ar/DGREC/image/"+metodo+valor+".png";
+    console.log("YA ENTRO EN HACER HOVER");
+    console.log(casilla);
 }
 
 function mostrarPantalla(pantalla) {

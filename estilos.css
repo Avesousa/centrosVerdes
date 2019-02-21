@@ -21,7 +21,7 @@ h1{
 
 /*////////CABECERA////////////*/
 header {
-    background-color:rgba(67,122,67,0.9);
+    background-color:rgba(73,126,217,0.9);
     margin: 0;
     padding: 0;
     position: fixed;
@@ -78,6 +78,10 @@ header img {
 /*//////////DATOS DE INGRESO//////////////*/
 .contenedorIngreso{
     background-color: white;
+}
+
+input{
+    border-radius: 15px;
 }
 
 .ingreso{

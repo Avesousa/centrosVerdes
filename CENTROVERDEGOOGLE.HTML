@@ -21,7 +21,7 @@ body {
 
 /*/////ELEMENTOS MODIFICADOS GLOBAL//////*/
 h1{
-    color: rgb(67,122,67);
+    color: rgb(82, 80, 80);
     font-size: 28px;
     margin: 0px;
 }
@@ -29,7 +29,7 @@ h1{
 
 /*////////CABECERA////////////*/
 header {
-    background-color:rgba(67,122,67,0.9);
+    background-color:rgba(82, 80, 80, 0.9);
     margin: 0;
     padding: 0;
     position: fixed;
@@ -60,33 +60,51 @@ header img {
 }
 .boton {
     width: 80%;
-    background: #FFBF00;
+    background: rgb(0,113,188);
     border: none;
     font-size: 20px;
     padding: 5px;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.botonAtras button{
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-top: 5%;
-    position: fixed;
-    background-color: red;
+    border-radius: 12px;
     color: white;
-    text-align: center;
-    font-size: 1.5em;
-    padding: 5px;
-    border: none;
-    border-radius: 50%;
 }
 
+.boton:hover{
+    background: rgb(2, 97, 160);
+}
 
+.boton:disabled{
+    background: rgb(10, 86, 138);
+    color: rgb(150, 150, 150);
+}
+
+.botonAtras img{
+    width: 50%;
+}
+
+.botonAtras{
+    margin-left: 0px;
+    margin-right: 1%;
+    position: fixed;
+    width: 10%;
+}
+
+.botonBorrar button{
+    background: coral;
+    color: white;
+    font-size: 14px;
+    border: none;
+}
+
+.botonBorrar button:hover{
+    background: red;
+}
 
 /*//////////DATOS DE INGRESO//////////////*/
 .contenedorIngreso{
     background-color: white;
 }
+
 
 .ingreso{
     font-family: Arial, Helvetica, sans-serif;
@@ -114,7 +132,8 @@ header img {
 
 .ingreso button {
     width: 80%;
-    background: #FFBF00;
+    background: rgb(0,113,188);
+    color: white;
     border: none;
     font-size: 20px;
     padding: 5px;
@@ -127,8 +146,8 @@ header img {
 #divIngresoE {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #F2F5A9;
-    border-radius: 0 0 15px 15px;
+    background-color: white;
+    border-radius: 15px;
     box-shadow: 2px 2px 5px -4px;
     font-size: 32px;
 
@@ -137,8 +156,9 @@ header img {
 .tituloEscritorio{
     font-size: 1.5em;
     padding: 5px;
-    background-color: #FFBF00;
+    background-color: rgb(0,113,188);
     color: white;
+    border-radius: 15px;
     font-family:'Courier New', Courier, monospace;
 }
 
@@ -172,8 +192,8 @@ header img {
 .contenedorCarga{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #F2F5A9;
-    border-radius: 0 0 15px 15px;
+    background-color: white;
+    border-radius: 15px;
     box-shadow: 2px 2px 5px -4px;
     font-size: 32px;
     margin-bottom: 10px;
@@ -222,10 +242,10 @@ header img {
 .fecha,
 .hora{
     width: 48%;
-    font-size: 12px;
+    font-size: 16px;
 }
 .patente {
-    font-size: 12px;
+    font-size: 16px;
     width: 50%;
 }
 
@@ -260,7 +280,7 @@ header img {
     margin-left: 2%;
     margin-top: 2px;
     float: left;
-    background-color: #FACC2E;
+    background-color: rgba(121, 121, 121,0.8);
 }
 
 .contador p {
@@ -297,9 +317,10 @@ header img {
     background-color: #FACC2E;
 }
 
+
 .seccionBolson input{
     margin: 0;
-    width: 98%;
+    width: 90%;
     font-size: 1em;
 }
 
@@ -390,7 +411,7 @@ header img {
 /*//////FOOTER/////////*/
 footer{
     position: fixed;
-    background-color: black;
+    background-color: rgba(160, 160, 160, 0.5);
     height: 40px;
     width: 100%;
     bottom: 0;
@@ -402,7 +423,7 @@ footer{
 
 footer h1{
     text-align: center;
-    color: #FACC2E;
+    color: rgb(82, 80, 80);
 }
 
 footer p{
@@ -422,7 +443,7 @@ footer a{
 }
 
 footer span{
-    color: #FACC2E;
+    color:rgb(82, 80, 80);
 }
 
 #ingreso-principal,
@@ -445,7 +466,8 @@ footer span{
 #materialDiv, 
 #caracteristicaDiv,
 #tablabolson,
-#tablapesomaterial{
+#tablapesomaterial,
+#botonAtrasMovil{
     display: none;
   }
 @media screen and (max-width: 1200px){
@@ -548,17 +570,6 @@ footer span{
         max-height: 50px;
     }
 
-    .botonAtras button{
-        position: static;
-        width: 100%;
-        background-color: red;
-        color: white;
-        text-align: center;
-        font-size: 1.5em;
-        padding: 5px;
-        border: none;
-        border-radius: 0px;
-    }
     
     .contenedorCargaMovil{
         margin-top: 12%;;
@@ -614,19 +625,47 @@ footer span{
       .cargoMixto:last-child {
           margin-bottom: 5px
       }
+
+      #botonAtrasMovil{
+        display: block;
+      }
+
+      #botonAtras{
+          display: none;
+      }
+
+      .botonAtrasMovil button{
+        
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+        position: static;
+        width: 100%;
+        background-color: coral;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        padding: 5px;
+        border: none;
+        border-radius: 10px;
+    }
+}
+
+input{
+    border-radius: 15px;
+    text-align: center;
+    font-size: 16px;
 }
     </style>
   </head>
   <body>
     <header>
-      <img src="http://carlitos.com.ar/DGREC/image/SED.png" alt="logo">
-      <img class = "logoCV" src="http://carlitos.com.ar/DGREC/image/ciudadverdeGocad.png" alt="Logo de la dirección">
+      <img src="http://carlitos.com.ar/DGREC/image/SED.png" alt="logo" onMouseOver="hacerHover('SED',this,'on')" onMouseOut="hacerHover('SED',this,'')">
+      <img class = "logoCV" src="http://carlitos.com.ar/DGREC/image/LEYENDA.png" alt="Logo de la dirección">
     </header>
 <!-- Parte para poder logger -->
   <div id="ingreso-principal" class ="ingreso contenedor contenedorIngreso">
       <div class="caja">
-          <h1>Ingreso SED</h1><br>
-          <hr>
           <div id ="aviso" class="Validador">
           </div>
           <h3>Usuario</h3>
@@ -650,9 +689,12 @@ footer span{
     </div>
   </div>
   <div id="carga" class="contenedor carga contenedorCargaMovil">
-      <div class="botonAtras">
-          <button onclick="limpiar();"> ↺ </button>
+      <div id="botonAtras" class="botonAtras">
+          <a onclick="limpiar();"><img src="http://carlitos.com.ar/DGREC/image/VOLVER.png" alt="boton para volver"></a>
       </div>
+      <div id="botonAtrasMovil" class="botonAtrasMovil">
+            <button onclick="limpiar();"> ↺ </button>
+        </div>
       <div>
         <div class="caja cajaCarga">
           <div id="camion" class="contenedorCarga">
@@ -661,7 +703,7 @@ footer span{
                 <div id = "validadorCamion" class = "divValidacion"></div>
                 <div class="inputCamion">
                   <div>
-                      <a id="candado" onclick="hacerCandado(this)"><img src="http://carlitos.com.ar/DGREC/image/rallamativo.png" style="width: 60px;" alt=""></a>
+                      <a id="candado" onclick="hacerCandado(this)"><img src="http://carlitos.com.ar/DGREC/image/CANDADOfalse.png" style="width: 60px;" alt="candado"></a>
                   </div>
                   <div>
                       <h3 class="tituloInput">Fecha</h3>
@@ -713,10 +755,10 @@ footer span{
               </div>
               <div class="seccionBolson">
                 <!-- FIJAR QUE ES LO QUE NECESITA CAMBIAR PARA VERIFICAR NOMBRE E ID-->
-                <input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del recolector">
-                <input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del recolector">
-                <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de entrada" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
-                <input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de caracteristica" value="0" >
+                <input type="hidden" name="NOMBRERD" id="nombre" placeholder = "Nombre del Recuperador">
+                <input type="hidden" name="IDRD" id="id" min = "1" max ="4" placeholder = "ID del Recuperador">
+                <input type="hidden" name="peso" id="pesoEntrada" placeholder = "Peso de Entrada" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
+                <input type="hidden" name="cantidad" id="cantidad" placeholder = "Cantidad de Caracteristica" value="0" >
                 <input type="hidden" name="peso" id="pesoSalida" placeholder = "Peso de Salida" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
                 <input type="hidden" name="peso" id="pesoUnitario" placeholder = "Peso Unitario" oninput="user.verificarPeso(); cambiarBoton(); clickear();" value="0">
                 <button id="botonCargar" class="boton botonCargar" name="btn1" onClick="metodoParaCargar.cargar();" disabled>Cargar</button>
@@ -745,6 +787,12 @@ footer span{
       </div>
   </div>
   <div id="elementos" class="contenedor">
+        <div id="botonAtras" class="botonAtras">
+                <a onclick="limpiar();"><img src="http://carlitos.com.ar/DGREC/image/VOLVER.png" alt="boton para volver"></a>
+            </div>
+            <div id="botonAtrasMovil" class="botonAtrasMovil">
+                  <button onclick="limpiar();"> ↺ </button>
+              </div>
       <div>
         <div class="caja">
           <div id="divIngresoE">
@@ -876,8 +924,8 @@ class Usuario {
                     horaC.disabled = true;
                     fechaC.value = fechaCandado;
                     fechaC.disabled = true;
-                    document.getElementById("candado").innerHTML = '<img class = "logoCV" src="'+
-                    'http://carlitos.com.ar/DGREC/image/raoscuro.png" alt="candado cerrado">';
+                    document.getElementById("candado").innerHTML = '<img src="'+
+                    'http://carlitos.com.ar/DGREC/image/CANDADOtrue.png" alt="candado cerrado" style="width: 60px;">';
                     this.verificarHora();
                     fechaVer = true;
                     //horaVer = true;
@@ -1276,7 +1324,9 @@ class mixta extends Metodo {
             var link = document.getElementById(canal);
             var img = document.getElementById("imagen" + canal);
             link.onclick = "";
-            img.src = "http://carlitos.com.ar/DGREC/image/raoscuro.png"; //'"http://carlitos.com.ar/DGREC/image/'+canal+'.png"');
+            img.src = "http://carlitos.com.ar/DGREC/image/"+canal+".png";
+            img.onmouseover = "";
+            img.onmouseout = "";
             document.getElementById("botonEnviarMixto").disabled = false;
             botonParaClickear = "botonEnviar";
             var estadistica = [canal,cantidadCargas,pesoT];
@@ -1330,7 +1380,9 @@ class mixta extends Metodo {
                 imagen.setAttribute('class', 'botonIngreso');
                 imagen.setAttribute('id', 'imagen' + valor);
                 imagen.setAttribute('alt', ('Boton del método' + valor));
-                imagen.setAttribute('src', 'http://carlitos.com.ar/DGREC/image/rallamativo.png'); //'"http://carlitos.com.ar/DGREC/image/'+array[i][0]+'.png"');
+                imagen.setAttribute('src', 'http://carlitos.com.ar/DGREC/image/'+valor+'on.png'); //'"http://carlitos.com.ar/DGREC/image/'+array[i][0]+'.png"');
+                imagen.setAttribute('onMouseOver','hacerHover("'+valor+'",this,"")');
+                imagen.setAttribute('onMouseOut','hacerHover("'+valor+'",this,"on")');
                 link.appendChild(imagen);
                 div.appendChild(link);
             }
@@ -2006,6 +2058,7 @@ function crearResumen(datosextras) {
         fila.appendChild(columna);
     }
     var btn = document.createElement("TD");
+    btn.setAttribute("class","botonBorrar")
     btn.innerHTML = '<button onclick="eliminar(' + elementoCargado +')"> x </button>';
     fila.appendChild(btn);
     cantidad++;
@@ -2083,7 +2136,9 @@ function colocarMenu(array, ingreso, egreso) {
         var imagen = document.createElement('img');
         imagen.setAttribute('class', 'botonIngreso');
         imagen.setAttribute('alt', ('"' + 'Boton del método ' + valor + '"'));
-        imagen.setAttribute('src', 'http://carlitos.com.ar/DGREC/image/rallamativo.png'); //'"http://carlitos.com.ar/DGREC/image/'+array[i][0]+'.png"');
+        imagen.setAttribute('src', 'http://carlitos.com.ar/DGREC/image/'+valor+'on'+'.png');
+        imagen.setAttribute('onMouseOver','hacerHover("'+valor+'",this,"")');
+        imagen.setAttribute('onMouseOut','hacerHover("'+valor+'",this,"on")');
         link.appendChild(imagen);
         if (valor != 'DESCARTE' && valor != 'VENTA') {
             div.appendChild(link);
@@ -2091,6 +2146,12 @@ function colocarMenu(array, ingreso, egreso) {
             divDos.appendChild(link);
         }
     }
+}
+
+function hacerHover(metodo,casilla,valor){
+    casilla.src = "http://carlitos.com.ar/DGREC/image/"+metodo+valor+".png";
+    console.log("YA ENTRO EN HACER HOVER");
+    console.log(casilla);
 }
 
 function mostrarPantalla(pantalla) {
@@ -2389,11 +2450,8 @@ function hacerCandado(div){
     }else{
         return alert("¡No puedes guardar valores de fecha y hora, cuando estos están vacios, o en error!")
     }
-    div.innerHTML = '<img class = "logoCV" src="'+
-    'http://carlitos.com.ar/DGREC/image/ra'+tipo+'.png" style = "width: 60px;" alt="candado cerrado">';
-
-    /*div.innerHTML = '<img class = "logoCV" src="'+
-    'http://carlitos.com.ar/DGREC/image/candado'+candado+'.png" alt="candado cerrado">';*/
+    div.innerHTML = '<img src="'+
+    'http://carlitos.com.ar/DGREC/image/CANDADO'+candado+'.png" style="width: 60px;" alt="candado con respecto al guardado">';
 
 }
 
@@ -2415,7 +2473,7 @@ var cargaDeCamion = ('<h1 class="tituloEscritorio cargaTitulo">Carga de datos: C
     '<div id = "validadorCamion" class = "divValidacion"></div>'+
     '<div class="inputCamion">'+
     '<div>'+
-    '<a id="candado" onclick="hacerCandado(this)"><img src="http://carlitos.com.ar/DGREC/image/rallamativo.png" style="width: 60px;" alt=""></a>'+
+    '<a id="candado" onclick="hacerCandado(this)"><img src="http://carlitos.com.ar/DGREC/image/CANDADOfalse.png" style="width: 60px;" alt=""></a>'+
     '</div>'+
     '<div>'+
     '<h3 class="tituloInput">Fecha</h3>'+
